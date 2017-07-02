@@ -1,0 +1,30 @@
+<html> 
+<head> <title></title> </head> 
+<body> 
+<script type="text/javascript"> 
+if(!Array.prototype.forEach){
+Array.prototype.forEach = function(fn, obj){
+obj = obj || this;
+var len = obj.length, i;
+for(i = 0; i < len; i++) { 
+fn.call(obj, obj[i], i ,obj); 
+} }; 
+} 
+
+
+function prints(e, i, a){
+document.write("<br />[" + e + "] is " + i ); }
+var ray = [12,5,8,130,44];
+//ray.forEach(prints); 
+
+Array.prototype.each = each;
+function each(fn, obj){
+obj = obj || this;
+var len = obj.length, i;
+for(i = 0; i < len; i++)
+fn.call(obj, obj[i], i, obj);
+}
+ray.each(prints);
+</script>
+ </body> 
+ </html>

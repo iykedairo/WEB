@@ -1,0 +1,76 @@
+mozilla
+parser = new DOMParser();
+htmlDoc = parser.parseFromString(txt, "text/html");
+//Do whatever you want with htmlDoc.getElementsByTagName('a');
+
+Chrome
+parser = new DOMParser();
+htmlDoc = parser.parseFromString(txt, "text/xml");
+//Do whatever you want with htmlDoc.getElementsByTagName('a');
+
+
+The fastest way to parse HTML in Chrome and Firefox is Range#createContextualFragment:
+
+var range = document.createRange();
+range.selectNode(document.body); // required in Safari
+var fragment = range.createContextualFragment('<h1>html...</h1>');
+var firstNode = fragment.firstChild;
+
+
+
+
+The following function parseHTML will return either :
+
+    a Document when your file starts with a doctype.
+
+    a DocumentFragment when your file doesn't start with a doctype.
+
+The code :
+
+function parseHTML(markup) {
+    if (markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+        var doc = document.implementation.createHTMLDocument("");
+        doc.documentElement.innerHTML = markup;
+        return doc;
+    } else if ('content' in document.createElement('template')) {
+       // Template tag exists!
+       var el = document.createElement('template');
+       el.innerHTML = markup;
+       return el.content;
+    } else {
+       // Template tag doesn't exist!
+       var docfrag = document.createDocumentFragment();
+       var el = document.createElement('body');
+       el.innerHTML = markup;
+       for (i = 0; 0 < el.childNodes.length;) {
+           docfrag.appendChild(el.childNodes[i]);
+       }
+       return docfrag;
+    }
+}
+
+How to use :
+
+var links = parseHTML('<!doctype html><html><head></head><body><a>Link 1</a><a>Link 2</a></body></html>').getElementsByTagName('a');
+
+function parseHTML(html) {
+    var t = document.createElement('template');
+    t.innerHTML = html;
+    return t.content.cloneNode(true);
+}
+
+var documentFragment = parseHTML('<td>Test</td>');
+
+
+jQuery's method
+
+/** 
+ * jQuery 2.1.3's parseHTML (without scripts options).
+ * Unlike jQuery, this returns a DocumentFragment, which is more convenient to insert into DOM.
+ * MIT license.
+ * 
+ * If you only support Edge 13+ then try this:
+    
+    function isElement(e){
+    	
+    }

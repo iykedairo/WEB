@@ -1,0 +1,204 @@
+mysql> insert into Address values  "288 Akin Olugbade", "Victoria Island", "Lago
+s", "23401", "Nigeria";
+################USERS: #####################
+PT: Techie //select, insert, delete, update, alter
+michaeliyke: Techie//Books.*:_ select, drop, index, create, delete, insert, alter, update
+Techie: ?=#alpha@239&$(VALUE)`s`!//all
+window: pt//all
+#############################################
+mysqlshow -u root -p//show but require password first. 
+mysqlshow mysql -u -root -p//all tables in the database specified
+mysql -u root -p //login
+mysql>create database Book_O_Rama //Query OK, 1 row affected (0.0 sec)
+
+
+________________________________________________________________________________________
+SETTING UP A USER FOR THE WEB (so the user can access our DB with PHP code connects)
+________________________________________________________________________________________
+
+mysql> grant select, insert, delete, update
+-> on books.*
+-> to bookorama identified by ‘bookorama123’;
+
+//The Tested sample
+mysql> grant select, insert, update, delete, index, alter, create, drop
+-> on books.*
+-> to bookorama identified by ‘bookorama123’;
+
+
+THE GRANT COMMAND
+_______________________
+The GRANT and REVOKE commands enable you to give rights to and take them away from MySQL 
+users at these four levels of privilege:
+ 	Global
+ 	Database
+ 	Table
+ 	Column
+	&& Database, table and column
+_________________________________________
+-------e.g------------------------
+GRANT privileges [columns]
+ON item
+TO user_name [IDENTIFIED BY ‘password’]
+[REQUIRE ssl_options]
+[WITH [GRANT OPTION | limit_options] ]
+
+REVOKE privileges [(columns)]
+ON item
+FROM user_name
+//To revoke privileges granted with the WITH clause, do the
+REVOKE All PRIVILEGES, GRANT
+FROM user_name
+
+create database Books_O_Rama.
+
+--------------------------------
+EXAMPLES OF GRANT AND REVOKE
+--------------------------------
+To set up an administrator, you can type
+mysql> grant all
+-> on *
+-> to fred identified by ‘mnb123’
+-> with grant option;
+grants all privileges on all databases to a user called Fred and allows him to pass on 
+those privilege.
+
+mysql> revoke all privileges, grant
+-> from fred;
+
+
+Now you can set up a regular user with no privileges:
+mysql> grant usage
+-> on books.*
+-> to sally identified by ‘magic123’;
+
+After talking to Sally, you know a bit more about what she wants to do, so you can give
+her the appropriate privileges:
+mysql> grant select, insert, update, delete, index, alter, create, drop
+-> on books.*
+-> to sally;
+
+Note that you don’t need to specify Sally’s password to give her privileges.
+If you decide that Sally has been up to something in the database, you might decide
+to reduce her privileges:
+mysql>revoke alter, create, drop
+-> on books.*
+-> from sally;
+
+And later, when she doesn’t need to use the database any more, you can revoke her privileges
+altogether:
+mysql> revoke all
+-> on books.*
+-> from sally;
+
+
+1.	columns -- optional list of columns where grant applies if you so wish
+
+2. 	item -- the database_name or database_table name the grant is applied
+	*.* as item means all items i.e global
+	* also has the same bearing.
+
+	db_name.* - all tables within db_name
+	db_name.table_name for just a specific table
+
+	dbname.tablename and some specific columns in the columns placeholder
+
+
+
+i.	user_name -- UserName of your user e.g Dairo@localhost or Dairo@website.com or just
+	-Dairo. But the former is preffered to avoid inter-domain collision of names
+ii.	password -- password of the user you are creating e.g ?=#alpha@239&$(VALUE)`s`!
+
+3.	REQUIRE -- means the user must connect using Secure Socket Layers (SSL)
+4.	WITH GRANT OPTION option -- if specified, allows the specified user to grant her
+	own privileges to others.
+--------Instead of the WITH cluase, you do the following--------------------
+i.	MAX_QUERIES_PER_HOUR n
+	or
+ii.	MAX_UPDATES_PER_HOUR n
+	or
+iii.	MAX_CONNECTIONS_PER_HOUR n
+
+[These clauses allow you to limit the number of queries, updates, or connections per
+hour a user may make.They can be useful for limiting individual user load on shared
+systems.]
+
+
+	LOCATION OF PRIVILEDGE STORAGE ON MySQL ARE THE FOLLOWING
+	i.	mysql.user 
+	ii.	mysql.db
+	iii.    mysql.host, 
+	iv.	mysql.tables_priv
+	v.	mysql.columns_priv
+	As an alternative to GRANT, you can alter these tables directly.
+
+
+
+
+	THREE TYPES AND LEVELS OF PRIVILEDGES ON MySQL
+i.	Regular users, ii.	Administrators, iii.	Special priviledges.
+NOTE: [You should not grant access to the mysql database to anyone except an administrator.
+This is the place where all the users, passwords, and so on are stored]
+
+
+			Privileges for Users
+___________________________________________________________________________________________
+Privilege   	Applies To				 Description
+___________________________________________________________________________________________
+SELECT 		tables, columns 	Allows users to select rows (records) from tables.
+INSERT 		tables, columns 	Allows users to insert new rows into tables.
+UPDATE 		tables, columns 	Allows users to modify values in existing table rows.
+DELETE 		tables 			Allows users to delete existing table rows.
+INDEX 		tables 			Allows users to create and drop indexes on --
+					---particular tables.
+ALTER 		tables 			Allows users to alter the structure of existing --
+ 					tables by, for example, adding columns, renaming --
+					columns or tables, and changing  data types of ---
+					columns.
+CREATE 		databases,tables	Allows users to create new databases or tables. If
+ 					a particular database or table is specified
+ 					in GRANT, they can only create that database or 
+					table, which means they will have to drop it first
+DROP 		databases, tables 	Allows users to drop (delete) databases or tables.
+
+
+
+
+___________________________________________________________________________________________
+	PREFFERED PRIVILEDGES FOR ADMINISTRATIVE USERS OF THE DATABASE
+___________________________________________________________________________________________
+Privilege 				Description
+CREATE TEMPORARY TABLES Allows an administrator to use the keyword TEMPORARY
+			in a CREATE TABLE statement.
+FILE 			Allows data to be read into tables from files and vice versa.
+LOCK TABLES 		Allows the explicit use of a LOCK TABLES statement.
+PROCESS 		Allows an administrator to view server processes belonging
+			to all users.
+RELOAD 			Allows an administrator to reload grant tables and flush
+			privileges, hosts, logs, and tables.
+REPLICATION CLIENT 	Allows use of SHOW STATUS on replication masters and
+			slaves. Replication is explained in Chapter 12.
+REPLICATION SLAVE 	Allows replication slave servers to connect to the master
+			server. Replication is explained in Chapter 12.
+SHOW DATABASES 		Allows a list of all databases to be seen with a SHOW
+DATABASES 		statement.Without this privilege, users see
+			only databases on which they have other privileges.
+SHUTDOWN 		Allows an administrator to shut down the MySQL server.
+SUPER 			Allows an administrator to kill threads belonging to any user
+
+
+
+
+
+
+__________________________________________________________________________________________
+	SPECIAL PRIVILEGES
+__________________________________________________________________________________________
+
+Privilege				 Description
+
+ALL 		Grants all the privileges listed in Tables 9.1 and 
+		9.2.You can also write ALL PRIVILEGES instead of ALL.
+USAGE 		Grants no privileges.This privilege creates a user and allows her to 
+		log on, but it doesn’t allow her to do anything. Usually, you will 
+		add more privileges later.

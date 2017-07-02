@@ -1,0 +1,136 @@
+!(function(){
+if(!window.pt){throw new Error("Techie TEMP.TOGGLES Module: Techie is not on page yet.")}
+	//Other code here...
+}( function(Techie, window, sapi){
+TEMP.TOGGLES = { };
+TEMP.TOGGLES.PT = {
+//PT TEMP TOGGLES
+Slice: Slice,isTag: isTag,plain: plain,isList: isList,isHTML: isHTML,isNode: isNode,
+isNodeList : isNodeList,isArrayLike: isArrayLike,DefineGlobals: DefineGlobals,Elements: Elements,
+html: html,HTML: html,events: Events,Events: Events,body : sapi.body,head : sapi.head,mixin : mixin,
+SAPI:SAPI,pt: Techie,URL: URL,url: url,Url : url,uri: uri,URI: URI,baseuri: baseuri,BaseUri: BaseUri,
+BaseURI: BaseURI,upper: upper,lower: lower,page : true,Store: {},store: [],array: [],create: create,
+createFrag: createFrag,isNode: isNode,isElement : isHTML,Extender: Extender,
+isCollection: isCollection,populate: populate,Bool: type,walk_the_DOM: walk,
+walk: walk,nthChild: nthChild,DefineProperty: DefineProperty,DefineProperties: DefineProperties,explode: explode,
+index: index,Index: Index,Children: Children,type: type,types: type,ChildPos:ChildPos,
+tag: tag,blob: blob,element: element,objects: objects,arrays: arrays,functions: functions,strings: strings,
+numbers: numbers, booleans: booleans,show: show, invalidChars: invalidChars,
+ extend: extend,
+ isAbsent: isAbsent,  isNumber: plain.numbers, isString: plain.strings, isUndefined:  type.undefineds,
+ isPrimitive: type.primitives, isArray: plain.arrays,  isObject: plain.objects, 
+  isFunction:  plain.functions, isBoolean: plain.booleans,   isPresent: isPresent
+};
+
+
+
+
+//ELEMENT
+
+
+META: function(i,m,b,l){
+/*
+initial-width, maximum-scale, user-scalable[0/1], minimum-scale;
+var m = pt.META;
+m(); m(1.0, 10.0, 1, 0.8);
+m("i=1,m=9,b=0")...will not overrite l.
+m("i=1,m=9,b=0", false);overrite all with <--
+*/
+var arr = [], meta;
+
+Techie('meta').each(function(){
+arr.push(this['name'].toLowerCase());
+if(!arr['viewport']){
+var frg = 
+'<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=0.8, maximum-scale=5.0, user-scalable=1" />';
+frg = sapi.createFrag(frg);
+sapi.head.appendChild(frg);
+} });
+
+
+meta = sapi.querySelector('meta[name="viewport"]');
+if(typeof i === 'string'){
+	if(typeof m==='boolean'){
+meta.setAttribute('content',i);
+	}else{
+		define(meta, i);
+	}
+}else{
+if(i){
+ define(meta,'initial-scale='+i);
+ }if(m){
+ define(meta,'maximum-scale='+m);
+ }if(b){
+ define(meta,'user-scalabe='+b);
+ } if(l){
+ define(meta,'minimum-scale='+l);
+ }
+ }
+function define(e, a){
+var attr = e.getAttribute('content');
+attr += a + ", ";
+e.setAttribute('content',attr);
+}
+},
+
+
+
+ EClass: function(a, b){
+	b = b || 'E';
+	a.classList.add(b);
+Techie('.R').each(function(){
+	this.css( "border: 1px solid indigo" );
+});
+	},
+
+//[STRING, NUMBERS, ARRAY, OBJECT, ELEMENT]
+var all = TEMP(String(explode(TEMP.TOGGLES)))
+
+function TEMP(TEMP){
+var words = ExtractWords(TEMP);
+var refined = EliminateRepitation(words);
+return refined;//an array
+}
+
+populate(Techie, [/*...*/, all]);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+LoadScripts: function(scripts, pos){
+scripts = [];
+var args = Slice.call(arguments, arguments, 0, ( arguments.length -1));//give me all arguments except the last one
+pos = arguments[arguments.length - 1];
+if(!isHTML(pos)){args.push(pos); pos = document.head;}
+if (isHTML(arguments[0])) { pos = arguments[0]; args = chop(args, 0);}
+args.forEach(function(script){
+	if (toString.call(script) == "[object Array]") { scripts.push(explode(script))}else{scripts.push(script);}
+});
+scripts.forEach(function(script, index, scripts){
+index = document.createElement("script"); index.defer = false; index.type = "text/javascript"; 
+index.src = script; pos.appendChild(index);
+});
+console.log("Techie: the following scripts were loaded in the " + pos + " of your page: " + scripts)
+}
+
+		},
+

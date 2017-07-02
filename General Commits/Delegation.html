@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+   <script type="text/javascript" language='javascript' src='Delegatin.js'></script>
+   <title>Delegation</title>
+<script type='text/javascript' src='Techie.js'></script>
+   </head>
+   <body>
+  <table id='table'> 
+ <tbody id='tbody'></tbody>
+  </table>
+<script type='text/javascript'>
+alert = a = a.a;
+a(Techie)
+pt.ready(function(){
+var table = sapi.id('tbody');
+i = 0, t = 0;
+for(; i < 500; i++){
+	tr = sapi.create('tr');
+	for(; t < 6; t++){
+		td = sapi.create('td');	td.appendChild(sapi.createTextNode(t));
+	tr.appendChild(td);
+	}
+	table.appendChild(tr);
+}
+
+});
+ </script>  
+   </body>
+</html>

@@ -1,0 +1,7 @@
+23:23, 7th April 2017	098 tires 	56 oil 	580 spark plugs 	$12 680.00	
+23:24, 7th April 2017	098 tires 	56 oil 	580 spark plugs 	$12 680.00	
+17:35, 8th April 2017	75 tires 	50 oil 	476 spark plugs 	$9 904.00	
+17:37, 8th April 2017	75 tires 	50 oil 	476 spark plugs 	$9 904.00	
+17:42, 8th April 2017	75 tires 	50 oil 	476 spark plugs 	$9 904.00	
+17:43, 8th April 2017	75 tires 	50 oil 	476 spark plugs 	$9 904.00	
+17:56, 8th April 2017	75 tires 	50 oil 	476 spark plugs 	$9 904.00	

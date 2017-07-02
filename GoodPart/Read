@@ -1,0 +1,1 @@
+Module loader will determine wether or not the document is yet yet and if so, it will load PT for me. when loaded, it will call method of PT which will invoke activate a() to go through only once if possible

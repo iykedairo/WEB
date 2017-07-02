@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+<script type="text/javascript" src="mixin.js"></script>
+ <script type="text/javascript" src="Singleton-Mega.js"></script>
+
+
+<title>Main Obj. Demo</title>
+   </head>
+   <body>
+<script>
+	var
+	mixin = function(s){
+	var i, store = [];
+	for (i in s){
+		store.push(i+"   :   "+s[i]);
+	}
+	document.writeln(store);
+	return store;
+	};
+	try{
+	alert(sapi)
+	mixin(window)
+	}
+	catch(e){
+		alert(e)
+	}
+</script>
+   </body>
+</html>

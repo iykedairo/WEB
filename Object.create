@@ -1,0 +1,151 @@
+function DefineProperties(object, properties,boo){var value;
+if(boo != false){boo = true}
+	var i;for(i in properties){
+if(properties.hasOwnProperty(i)){value = properties[i];
+Object.defineProperty(object,i, {
+	value: value,
+	writable: true,
+	configurable: true,
+	enumerable: boo
+});
+		}
+	}
+}return object;
+ }
+
+function DefineAccessors(object, name, gttr, sttr){
+Object.defineProperty(object, name, {
+	get: gttr,
+	set: sttr,
+	enumerable: true,
+	configurable: true
+});
+}
+function DefineProperty(object, name, value,boo){
+
+Object.defineProperty(object, name, {
+	value: value,
+	writable: true,
+	configurable: true,
+	enumerable: boo boo == false ? false : true
+})
+}
+
+
+Object.defineProperty(Techie, 'Each',{
+	get: function(){
+		
+	},
+	set: function(){
+		
+	},
+	configurable: true,
+	enumerable: false
+});
+
+
+
+Object.defineProperty(person1, "name", {
+get: function() {
+console.log("Reading name");
+return this._name;
+},
+set: function(value) {
+console.log("Setting name to %s", value);
+this._name = value;
+},
+enumerable: true,
+configurable: true
+});
+
+
+
+var person1 = {};
+Object.defineProperties(person1, {
+u // data property to store data
+_name: {
+value: "Nicholas",
+enumerable: true,
+configurable: true,
+writable: true
+},
+v // accessor property
+name: {
+get: function() {
+console.log("Reading name");
+return this._name;
+},
+set: function(value) {
+console.log("Setting name to %s", value);
+this._name = value;
+},
+enumerable: true,
+configurable: true
+}
+});
+
+
+
+
+function Set(){
+this.data = {};
+this.length = 0;
+}
+Set.prototype.has = function(item){
+return typeof this.data[item] !== "undefined";
+};
+Set.prototype.add = function(item){
+if(!this.has(item)){
+this.data[item] = true;
+this.length++;
+}
+}
+
+t.prototype.remove = function(item){
+if(this.has(item)){
+delete this.data[item];
+this.length--;
+}
+};
+const ninjas = new Set();
+ninjas.add("Hattori");
+ninjas.add("Hattori");
+
+const ninjas = new Set(["Kuma", "Hattori", "Yagyu", "Hattori"]);
+
+
+ninjas.has("Hattori")
+
+
+ninjas.add("Yoshi");
+
+
+
+
+
+
+
+
+
+
+
+
+// inherits from Rectangle function Square(size) { this.length = size; this.width  =  size; } Square.prototype  =  Object.create(Rectangle.prototype, {                         constructor:  {                             configurable:                             enumerable: true, true,                             value:  Square,                             writable:                         }                     }); true Square.prototype.toString = function() { return  "[Square "  +  this.length  +  "x"  +  this.width  +  "]"; };
+function Rectangle(length, width) { this.length = length; this.width  =  width; } Rectangle.prototype.getArea = function() { return this.length  *  this.width; }; Rectangle.prototype.toString = function() { return  "[Rectangle "  +  this.length  +  "x"  +  this.width  +  "]"; }; // inherits from Rectangle v function Square(size) { this.length = size; this.width  =  size; } Square.prototype  =  new  Rectangle(); Square.prototype.constructor  =  Square; Square.prototype.toString = function() { return  "[Square "  +  this.length  +  "x"  +  this.width  +  "]"; }; var  rect  =  new  Rectangle(5,  10); var  square  =  new  Square(6); console.log(rect.getArea());        console.log(square.getArea());      console.log(rect.toString());       console.log(square.toString());     // 50 // 36 // "[Rectangle 5x10]" // "[Square 6x6]" console.log(rect  instanceof  Rectangle);     console.log(rect  instanceof Object);        console.log(square  instanceof  Square);      console.log(square  instanceof  Rectangle);   console.log(square  instanceof Object); 
+
+// you write this function YourConstructor() { // initialization } // JavaScript engine does this for you behind the scenes YourConstructor.prototype  =  Object.create(Object.prototype, {                                 constructor:                                 }                             });
+var  nakedObject  =  Object.create(null); console.log("toString"  in  nakedObject);     console.log("valueOf"  in  nakedObject);      // false // false 
+var  person1  =  {     name:  "Nicholas",     sayName:  function() {         console.log(this.name);     } }; var  person2  =  Object.create(person1, {     name:  {         configurable:  true,         enumerable:  true,         value:  "Greg",         writable:  true     } }); person1.sayName();          person2.sayName();          70    Chapter 5 // outputs "Nicholas" // outputs "Greg"
+
+var  book  =  {     title:  "The Principles of Object-Oriented JavaScript" }; // is the same as var  book  =  Object.create(Object.prototype, {                 title:  {                     configurable:  true,                     enumerable:  true,                     value: true "The Principles of Object-Oriented JavaScript",                     writable:                 }             });
+
+function Rectangle(length, width) { this.length = length; this.width  =  width; }
+
+Rectangle.prototype.getArea = function() { return this.length  *  this.width; }; Rectangle.prototype.toString = function() { return  "[Rectangle "  +  this.length  +  "x"  +  this.width  +  "]"; }; // inherits from Rectangle u  function  Square(size) {     Rectangle.call(this, size, size);     // optional: add new properties or override existing ones here } Square.prototype  =  Object.create(Rectangle.prototype, {                         constructor:  {                             configurable:                             enumerable: true, true,                             value:  Square,                             writable: true                         }                     }); Square.prototype.toString = function() { return  "[Square "  +  this.length  +  "x"  +  this.width  +  "]"; }; var  square  =  new  Square(6); console.log(square.length);         console.log(square.width);          console.log(square.getArea());      // 6 // 6 // 36
+
+
+function Rectangle(length, width) { this.length = length; this.width  =  width;¬ } Rectangle.prototype.getArea = function() { return this.length  *  this.width; }; Rectangle.prototype.toString = function() { return  "[Rectangle "  +  this.length  +  "x"  +  this.height  +  "]"; }; // inherits from Rectangle function  Square(size) {     Rectangle.call(this, size, size); } Square.prototype  =  Object.create(Rectangle.prototype, {                         constructor:  {                         }                     }); // call the supertype method                             configurable:                             enumerable: true, true,                             value:  Square,                             writable: true u Square.prototype.toString = function() { var text = Rectangle.prototype.toString.call(this); return  text.replace("Rectangle",  "Square"); };
+
+var  person1  =  {}; Object.defineProperties(person1, { u      // data property to store data     _name:  {         value:  "Nicholas",         enumerable:  true,         configurable:  true,         writable:  true     },
+
+    // accessor property     name:  {         get:  function() {             console.log("Reading name"); return this._name;         },         set:  function(value) {             console.log("Setting name to %s", value); this._name  =  value;         },         enumerable:  true,         configurable:  true     } });

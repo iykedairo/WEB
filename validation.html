@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head> 
+<script type='text/javascript' src='Techie.js'></script>
+<script type='text/javascript' src='script.js'></script>
+      <title></title>
+   </head>
+   <body>
+<form method="POST"action=''>
+First name:<input type="text" id="first_name" placeholder="First name"/>
+<br><br>
+Last name:
+<input type="text" id="last_name" placeholder="Last name"/>
+<br><br> 
+Email:
+<input type="email" id="email" placeholder="Email address"/> <br><br>
+Mobile phone:
+<input type="number" id="phone" placeholder="Mobile number"/>
+<br><br>
+Gender: <br><br>
+Male
+<input type="radio"id="gender2"/>
+Female:
+<input type="radio"id="gender1"/>
+<br><br>
+Password:
+<input type="password" id="pwd" placeholder="password"/>
+<br><br>
+<button id="btn">Submit</button>
+<br><br>
+<input type="reset" value="Reset" />
+</form>
+<div id="lastDiv"></div>
+<h2 id="lastDiv"></h2>
+<i id="lastDiv"></i>
+<script type='text/javascript'>
+pt(sapi).ready(function(){
+	
+var
+fn = sapi.id('First_name');
+var 
+ln = sapi.id('Last_name');
+var phn = sapi.id('phone');
+var email = sapi.id('email');
+var 
+gender = sapi.id('gender');
+var pwd = sapi.id('pwd');
+var submit = sapi.id('btn');
+function invalid(){
+	var err = "Sorry, this is invalid";
+	pt.Log(err)
+	throw new Error(err);
+}
+pt.EventUtil.addHandler(submit, 'click', foo);
+	
+	function foo(){
+function validate_name(){
+var vn =/^[a-zA-Z0-9]{2,20}/;
+if(!vn.test(fn)){
+	invalid();
+}
+}
+		
+	}
+	
+	alert(this.qs)
+	});
+	
+</script>
+   </body>
+</html>

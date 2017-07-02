@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+ <script type='text/javascript' src='stringify.js'></script>
+<script type='text/javascript' src='Singleton-Mega.js'></script>
+ <title>Stringify</title>
+   </head>
+   <body>
+   	
+   	
+<h1 id="header">Welcome To PT Nigeria plc.</h1>
+<h2 id="sub">This is PT!</h2>
+<p id="intro">
+You are in PT. Take your time, explore the place; PT is a big place.</p>
+<p id='mid'> 
+The world at PT is complex enough to introduce its own fear. If you are smart, you wont get hurt. PT is a gateway for all things, your eyes in water and you are safe. 
+<h3 id='fun'>Have Fun!</h3>
+</p>
+   	
+  <script>
+ 
+var obs = {
+'display': 'block',
+'font-size' : '220%',
+'background': '#fff89f',
+'position': 'inherit',
+'max-width' : '25em',
+'color': '#123456',
+'margin': '0 auto'
+};var arr = 
+["color:#999;font-size:4em"];
+var fun = sapi.id('fun');
+//commands
+sapi.styles(arr, fun);
+sapi.styles(obs, sapi.body);
+function PT(x){ x=sapi.querySelectorAll(x)[0];
+return (x.length === 0) ? x : (x.length === 1) ? x[0] : x;
+}
+
+
+try{
+sapi.css("display:none", fun);
+var body = PT("body");
+alert(body)
+}catch(ex){alert(ex)}
+    </script>
+   </body>
+</html>

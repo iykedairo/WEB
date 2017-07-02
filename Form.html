@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<script type='text/javascript' src='../Techie.js'></script>
+<script type='text/javascript' src='bnkGoodParts.js'></script>
+      <title></title>
+   </head>
+  <body>
+
+ 
+
+<form id="form1" action="Action.php" method="post">
+
+<p id="fname">First Name:
+<input placeholder="Type into the bar" type="text" id="first name" name="firstName"/>
+</p>
+<p id="mname" >Middle Name:
+<input placeholder="Type into the bar" type="text" id="middle name" name="middleName"/>
+</p >
+<p id="lname" >Last Name:
+<input placeholder="Type into the bar" type="text" id="last name" name="lastName"/>
+</p>
+<p id="userN" >User name:
+<input placeholder="Type into the bar" type="text" id="username" name="userName" />
+</p>
+<p id="pwd">Password:
+<input placeholder="Type into the bar" type="password" id="password" name="password" />
+</p>
+<p id="email">Email:
+<input placeholder="Type into the bar" type="email" id="email address" name="email" /></p>
+<p id="phone">Phone:
+<input placeholder="Type into the bar" type="number" id="mobile number" name="mobile" />
+</p>
+
+<input type="submit" value="submit"  name="submiter" id="submiter"/>
+<input type="hidden" class="hidden" name="hidden" />
+</form>
+
+<style>
+	.E{
+		font-color: indigo;
+	border: 1px dotted crimson;
+	
+	}
+	</style>
+<script>
+Techie.ready(function Globes(){
+a = {}.a; alert = a;
+
+var form = sapi.id('form1');
+var ErrorStack = [];
+var ErrorStyler = [];
+var err = null, match = null;
+var initChecks = {
+ReportErrors: function(){
+	if(ErrorStack.length > 0){
+ErrorStyler.forEach(function(e){
+e = e.children[0];
+e.addClass('E');
+pt('.N').each(function(){
+//	this.css('border: red')
+})
+});
+return {
+	ErrorStack: ErrorStack,
+	ErrorStyler: ErrorStyler
+};
+	}
+
+var 
+congr = "Congratulations!!";
+
+setTimeout(function(){
+	try{
+form.submit();
+}catch(e){alert(e)}
+ pt.msg(congr);
+	 alert(!!5)
+}, 2000);
+return true;
+},
+
+
+emptyChecks:function(str,p,id){
+var NotEmpty = /\S+/;
+var tst = NotEmpty.test(str);
+if(tst !== true){
+err = id + " is empty!<br/>";
+this.React(p, id, err);
+return false;
+}
+return true;
+	},
+	
+	
+phone: function(str, p, id){
+if(!this.emptyChecks(str,p,id)){return false;}
+mch = /^[a-zA-Z0-9\_]{2,20}/.test(str);
+	match = /^(\d{7,12})+$/.test(str);
+	if(!mch) this.React(p, id);
+},
+
+
+
+email: function(str,p,id){
+if(!this.emptyChecks(str,p,id)){return false;}
+match = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(str); 
+if(!match) this.React(p, id);
+},
+
+
+
+pwd: function(str, p, id){
+if(!this.emptyChecks(str,p,id)){return false;}
+match = /^\s*([0-9a-zA-Z]*)\s*$/.test(str);
+if(!match) this.React(p, id);
+},
+	
+	
+names: function(str,p,id){
+if(!this.emptyChecks(str,p,id)){return false;}
+match =/^([A-z]{2,20})+$/i.test(str);
+if(!match) this.React(p, id);
+},
+
+React: function(parent,id,e){
+e = e || 'Invalid ' + id;
+ErrorStack.push(e);
+ErrorStyler.push(parent);
+pt.min(e, parent);
+},
+userName: function(str,p,id){
+if(!this.emptyChecks(str,p,id)){return false;}
+match = /^(([A-Za-z]|[0-9]|_){5,})+$/.test(str);
+if(!match) this.React(p, id);
+}
+
+//end of initChecks
+};
+
+var fname = sapi.id('first name'),
+lname = sapi.id('last name'),
+mname = sapi.id('middle name'),
+userN = sapi.id('username'), 
+pwd = sapi.id('password'), 
+email = sapi.id('email address'),
+phone = sapi.id('mobile number');
+var p = sapi.forms[0].getElementsByTagName("p");
+
+
+
+
+pt.addHandler(sapi.forms[0], 'submit', function(e){
+	 pt.preventDefault(e);
+
+initChecks.names(fname.value, p[0], fname.id);
+
+initChecks.names(mname.value, p[1], mname.id);
+
+initChecks.names(lname.value, p[2], lname.id);
+
+initChecks.userName(userN.value, p[3], userN.id);
+
+
+initChecks.email(email.value, p[5], email.id);
+
+initChecks.pwd(pwd.value, p[4], pwd.id);
+
+initChecks.phone(phone.value, p[6], phone.id);
+initChecks.ReportErrors();
+}); 
+
+Techie("input").each(function(){
+pt.addHandler(this, 'focus', function(){
+pt.hideErrors();
+ErrorStyler.forEach(function(e){
+	e = e.children[0];
+ //pt.css("border: 1px solid #888", e);
+ e.classList.remove('E');
+//  alert(pt.hasClass(e, 'R'))
+})
+ErrorStack = [];
+ErrorStyler =[];
+});});
+
+
+});
+</script>
+</body>
+
+
+</html>
