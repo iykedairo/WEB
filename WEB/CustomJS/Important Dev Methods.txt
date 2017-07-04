@@ -1,0 +1,38 @@
+				
+
+				IMPORTANT METHODS FOR PRODUCTION
+var h1Child1 = h1Id.firstChild;
+var h1Nextkin = h1Id.nextsibling;
+
+AddSearchProvider = AddSearchProvider()
+IsSearchProviderInstalled = IsSearchProviderInstalled()
+AddSearchEngine = AddSearchEngine()
+
+
+
+postMessage()
+moveTo()
+moveBy()
+getSelection()
+getComputedStyle()
+getDefaultComputedStyle()
+find()
+fetch()
+focus()
+dump()
+close()
+comfirm()
+createImageBitmap()
+captureEvents()
+cancelAnimationFrame()
+blur()
+
+matchMeadia()
+
+open()
+print()
+stop()
+releaseEvents(),
+resizeBy(), resizeTo()
+sizeToContent(), setTimeout(), setResizale(), setInterval(), clearInterval(), clearTimeout()
+scroll(), scrollByLine(), scrollBy(), scrillByPages(), scrollTo(),

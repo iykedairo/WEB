@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="" charset="utf-8"></script>
+		<title>Test One</title>
+	</head>
+	<body>
+	<script type="text/javascript" src="///C:/WEB/WEB/LIBRARY/CUSTOM/custom.js"></script>
+<ul class="tabbernav">
+<li class="tabberactive"><a title="All">All</a></li>
+<li class=""><a title="One">One</a></li>
+<li class=""><a title="Two">Two</a></li>
+<li class=""><a title="Three">Three</a></li>
+</ul>
+<button id="test">Click Me!</button>
+
+<h1 id="dynamicText">I want this text to change dynamically.</h1>
+
+		<script type="text/javascript">
+			!function() {
+				// body...
+				 var lItems = document.getElementsByTagName("ul")[0];
+				 var nth = lItems.getElementsByTagName("li")[2];
+				 	nth.innerHTML = "<a title='Two'>----NEW LIST ITEM CHANGED-----</a>";
+
+					var nthChild = function(parent, pos, childPos) {
+						// body...
+						if(parent.nodeType == 2){
+							parent = document.getElementsByTagName(parent)[pos];
+							return parent.children[childPos];
+						}
+
+						
+					};
+
+					nthChild("ul", 0, 1).innerHTML = "I love programming in JavaScript!";
+
+					var a = document.getElementsByTagName('ul')[0];
+					var b = a.children[0];
+					b.innerHTML = "This is a surprise!";
+			};
+
+
+
+      var Elements = {
+      	body : SAPI.tag("body"),
+        qs: function(id){
+          return (document.querySelector) ? document.querySelector(id) : document.querySelectorAll(id);
+        },
+        createElemet : function(element, pos, nth){
+         element = document.createElement(element);
+         element.textContent = "Elements successfully created and inserted to the page.";
+         if(pos){
+         pos = (typeof pos !== 'string') ? pos : (pos.nodeType == 2) ? document.getElementsByTagName(pos) : Elements.qs(pos);
+         	return pos.insertBefore(element, pos[0]);
+         }
+         else
+         {
+         return Elements.body.append(element);
+     }
+
+     return this;
+        },
+        showOff : function(){
+          var dynamically = "I inserted this text dynamically for testing";
+          var dynamicText = Elements.qs("#dynamicText");
+          dynamicText.textContent = dynamically;
+          return this;
+        }
+      };
+
+   // Elements.createElemet("h2");
+
+
+
+   var application = {
+            utilities:{
+                    drawing:{
+                            canvas:{
+                                    d2:{
+                                            /*...*/
+                                    }
+                            }
+                    }
+            }
+};
+   
+		</script>
+	</body>
+</htm>

@@ -1,0 +1,193 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033\deflangfe1033{\fonttbl{\f0\fswiss Futura-CondensedBoldOblique;}{\f1\froman NewBaskerville-Roman;}{\f2\froman NewBaskerville-Italic;}{\f3\froman TheSansMonoCondensed-Plain;}{\f4\fnil\fcharset0 Calibri;}{\f5\fswiss Helvetica;}{\f6\fswiss Futura-CondensedBold;}{\f7\fswiss Futura-Light;}{\f8\fswiss DogmaBold;}{\f9\froman TheSansMonoCondensed-Italic;}{\f10\fswiss\fcharset0 Helvetica;}}
+{\colortbl ;\red35\green31\blue32;\red15\green129\blue64;\red102\green102\blue102;\red187\green36\blue38;\red0\green0\blue255;\red255\green255\blue255;\red66\green130\blue130;\red187\green103\blue136;}
+{\*\generator Riched20 6.3.9600}{\*\mmathPr\mnaryLim0\msmallFrac1\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\f0\fs24\lang9  \cf1\b\i Object and Array Literals\par
+\b0\i0\f1\fs20 To create an object with \i\f2 object literal \i0\f1 syntax, you can defne the properties\par
+of a new object inside braces. Properties are made up of an identifer or\par
+string, a colon, and a value, with multiple properties separated by commas.\par
+For example:\par
+\cf2\f3\fs17 var \cf1 book \cf3 = \cf1\{\par
+name\cf3 : \cf4 "The Principles of Object-Oriented JavaScript"\cf1 ,\par
+year\cf3 : 2014\par
+\cf1\};\par
+\f1\fs20 You can also use string literals as property names, which is useful when you want a property name to have spaces or other special\par
+characters:\par
+\cf2\f3\fs17 var \cf1 book \cf3 = \f4\lang1033\{\cf0\f3\fs24\lang9  \par
+\cf4\fs17 "name"\cf3 : \cf4 "The Principles of Object-Oriented JavaScript"\cf1 ,\par
+\cf4 "year"\cf3 : 2014\par
+\cf1\};\par
+{\cf5\f5\fs20{\field{\*\fldinst{HYPERLINK www.it-ebooks.info }}{\fldrslt{www.it-ebooks.info\ul0\cf0}}}}\cf5\f5\fs20\par
+\cf1\b\f6\fs18 10 \b0\f7\fs12 Chapter 1\par
+\f1\fs20 This example is equivalent to the previous one despite the syntactic\par
+differences. Both examples are also logically equivalent to the following:\par
+\cf2\f3\fs17 var \cf1 book \cf3 = \cf2 new Object\cf1 ();\par
+book.name \cf3 = \cf4 "The Principles of Object-Oriented JavaScript"\cf1 ;\par
+book.year \cf3 = 2014\cf1 ;\par
+\f1\fs20 The outcome of each of the previous three examples is the same:\par
+an object with two properties. The choice of pattern is up to you because\par
+the functionality is ultimately the same.\par
+\cf6\b\f8\fs15 n o T e \cf1\b0\i\f2\fs20 Using an object literal doesn\rquote t actually call \f9\fs17 new Object()\f2\fs20 . Instead, the JavaScript\par
+engine follows the same steps it does when using \f9\fs17 new Object() \f2\fs20 without actually\par
+calling the constructor. This is true for all reference literals.\par
+\i0\f1 You can defne an \i\f2 array literal \i0\f1 in a similar way by enclosing any number of comma-separated values inside square brackets. For example:\par
+\cf2\f3\fs17 var \cf1 colors \cf3 = \cf1 [ \cf4 "red"\cf1 , \cf4 "blue"\cf1 , \cf4 "green" \cf1 ];\par
+console.log(colors[\cf3 0\cf1 ]); \cf7 // "red"\par
+\cf1\f1\fs20 This code is equivalent to the following:\par
+\cf2\f3\fs17 var \cf1 colors \cf3 = \cf2 new Array\cf1 (\cf4 "red"\cf1 , \cf4 "blue"\cf1 , \cf4 "green"\cf1 )\par
+console.log(colors[\cf3 0\cf1 ]); \cf7 // "red"\par
+\cf1\b\i\f0\fs24 Function Literals\par
+\b0\i0\f1\fs20 You almost always defne functions using their literal form. In fact, using\par
+the \f3\fs17 Function \f1\fs20 constructor is typically discouraged given the challenges of\par
+maintaining, reading, and debugging a string of code rather than actual\par
+code, so you\rquote ll rarely see it in code.\par
+Creating functions is much easier and less error prone when you use\par
+the literal form. For example:\par
+\cf2\f3\fs17 function \cf1 reflect(value) \{\par
+\cf2 return \cf1 value;\par
+\}\par
+\cf7 // is the same as\par
+\cf2 var \cf1 reflect \cf3 = \cf2 new Function\cf1 (\cf4 "value"\cf1 , \cf4 "return value;"\cf1 );\par
+\f1\fs20 This code defnes the \f3\fs17 reflect() \f1\fs20 function, which returns any value\par
+passed to it. Even in the case of this simple function, the literal form is\par
+easier to write and understand than the constructor form. Further, there\par
+{\cf5\f5{\field{\*\fldinst{HYPERLINK www.it-ebooks.info }}{\fldrslt{www.it-ebooks.info\ul0\cf0}}}}\cf5\f5\fs20\par
+\cf1\f7\fs12 Primitive and Reference Types \b\f6\fs18 11\par
+\b0\f1\fs20 is no good way to debug functions that are created in the constructor\par
+form: These functions aren\rquote t recognized by JavaScript debuggers and\par
+therefore act as a black box in your application.\par
+\b\i\f0\fs24 Regular Expression Literals\par
+\b0\i0\f1\fs20 JavaScript also has \i\f2 regular expression literals \i0\f1 that allow you to defne regular expressions without using the \f3\fs17 RegExp \f1\fs20 constructor. Regular expression\par
+literals look very similar to regular expressions in Perl: The pattern is contained between two slashes, and any additional options are single characters following the second slash. For example:\par
+\cf2\f3\fs17 var \cf1 numbers \cf3 = \cf8 /\\d+/g\cf1 ;\par
+\cf7 // is the same as\par
+\cf2 var \cf1 numbers \cf3 = \cf2 new RegExp\cf1 (\cf4 "\\\\d+"\cf1 , \cf4 "g"\cf1 );\par
+\f1\fs20 The literal form of regular expressions in JavaScript is a bit easier\par
+to deal with than the constructor form because you don\rquote t need to worry\par
+about escaping characters within strings. When using the \f3\fs17 RegExp \f1\fs20 constructor, you pass the pattern in as a string, so you have to escape any\par
+backslashes. (That\rquote s why \f3\fs17\\d \f1\fs20 is used in the literal and \f3\fs17\\\\d \f1\fs20 is used in the\par
+constructor.) Regular expression literals are preferred over the constructor form in JavaScript except when the regular expression is being constructed dynamically from one or more strings.\par
+That said, with the exception of \f3\fs17 Function\f1\fs20 , there really isn\rquote t any right\par
+or wrong way to instantiate built-in types. Many developers prefer literals,\par
+while some prefer constructors. Choose whichever method you fnd more\par
+
+\pard\sa200\sl276\slmult1 comfortable to us\par
+\par
+\par
+
+\pard\cf0\f3\fs24  \cf2\fs17 var \cf1 array \cf3 = \cf1 [];\par
+array.push(\cf3 12345\cf1 );\par
+\f1\fs20 With bracket notation, the name of the method is now included in a\par
+string enclosed by square brackets, as in this example:\par
+\cf2\f3\fs17 var \cf1 array \cf3 = \cf1 [];\par
+array[\cf4 "push"\cf1 ](\cf3 12345\cf1 );\par
+{\cf5\f5\fs20{\field{\*\fldinst{HYPERLINK www.it-ebooks.info }}{\fldrslt{www.it-ebooks.info\ul0\cf0}}}}\cf5\f5\fs20\par
+\cf1\b\f6\fs18 12 \b0\f7\fs12 Chapter 1\par
+\f1\fs20 This syntax is very useful when you want to dynamically decide which\par
+property to access. For example, here bracket notation allows you to use a\par
+variable instead of the string literal to specify the property to access.\par
+\cf2\f3\fs17 var \cf1 array \cf3 = \cf1 [];\par
+\cf2 var \cf1 method \cf3 = \cf4 "push"\cf1 ;\par
+
+\pard\sa200\sl276\slmult1 array[method](\cf3 12345\cf1 )\par
+\par
+\par
+
+\pard\cf0\fs24  \cf2\fs17 var \cf1 items \cf3 = \cf1 [];\par
+\cf2 var \cf1 object \cf3 = \cf1\{\};\par
+\cf2 function \cf1 reflect(value) \{\par
+\cf2 return \cf1 value;\par
+\}\par
+console.log(items \cf2 instanceof Array\cf1 ); \cf7 // true\par
+\cf1 console.log(object \cf2 instanceof Object\cf1 ); \cf7 // true\par
+
+\pard\sa200\sl276\slmult1\cf1 console.log(reflect \cf2 instanceof Function\cf1 ); \cf7 // tru\f10\lang1033 e\par
+\par
+
+\pard\cf0\f3\fs24  \cf2\fs17 var \cf1 items \cf3 = \cf1 [];\par
+\cf2 var \cf1 object \cf3 = \cf1\{\};\par
+\cf2 function \cf1 reflect(value) \{\par
+\cf2 return \cf1 value;\par
+\}\par
+console.log(items \cf2 instanceof Array\cf1 ); \cf7 // true\par
+\cf1 console.log(items \cf2 instanceof Object\cf1 ); \cf7 // true\par
+\cf1 console.log(object \cf2 instanceof Object\cf1 ); \cf7 // true\par
+\cf1 console.log(object \cf2 instanceof Array\cf1 ); \cf7 // false\par
+\cf1 console.log(reflect \cf2 instanceof Function\cf1 ); \cf7 // true\par
+
+\pard\sa200\sl276\slmult1\cf1 console.log(reflect \cf2 instanceof Object\cf1 ); \cf7 // tru\f10 e\par
+\par
+
+\pard\cf0\f3\fs24  \cf2\fs17 var \cf1 items \cf3 = \cf1 [];\par
+
+\pard\sa200\sl276\slmult1 console.log(\cf2 Array\cf1 .isArray(items)); \cf7 // tru\f10 e\par
+\par
+
+\pard\cf0\f3\fs24  \cf2\fs17 var \cf1 name \cf3 = \cf4 "Nicholas"\cf1 ;\par
+\cf2 var \cf1 firstChar \cf3 = \cf1 name.charAt(\cf3 0\cf1 );\par
+console.log(firstChar); \cf7 // "N"\par
+\cf1\f1\fs20 This is what happens behind the scenes:\par
+\cf7\f3\fs17 // what the JavaScript engine does\par
+\cf2 var \cf1 name \cf3 = \cf4 "Nicholas"\cf1 ;\par
+\cf2 var \cf1 temp \cf3 = \cf2 new String\cf1 (name);\par
+\cf2 var \cf1 firstChar \cf3 = \cf1 temp.charAt(\cf3 0\cf1 );\par
+temp \cf3 = \cf2 null\cf1 ;\par
+console.log(firstChar); \cf7 // "N"\par
+\cf1\f1\fs20 Because the second line uses a string (a primitive) like an object,\par
+the JavaScript engine creates an instance of \f3\fs17 String \f1\fs20 so that \f3\fs17 charAt(0) \f1\fs20 will\par
+work. The \f3\fs17 String \f1\fs20 object exists only for one statement before it\rquote s destroyed\par
+(a process called \i\f2 autoboxing\i0\f1 ). To test this out, try adding a property to a\par
+string as if it were a regular object:\par
+\cf2\f3\fs17 var \cf1 name \cf3 = \cf4 "Nicholas"\cf1 ;\par
+name.last \cf3 = \cf4 "Zakas"\cf1 ;\par
+
+\pard\sa200\sl276\slmult1 console.log(name.last)\f10 ;\par
+\par
+
+\pard\cf0\f3\fs24  \cf2\fs17 var \cf1 name \cf3 = \cf4 "Nicholas"\cf1 ;\par
+name.last \cf3 = \cf4 "Zakas"\cf1 ;\par
+
+\pard\sa200\sl276\slmult1 console.log(name.last); \cf7 // undefined\par
+\par
+
+\pard\cf0\f1\fs24  \cf1\fs20 Here\rquote s what\rquote s actually happening in the JavaScript engine:\par
+\cf7\f3\fs17 // what the JavaScript engine does\par
+\cf2 var \cf1 name \cf3 = \cf4 "Nicholas"\cf1 ;\par
+\cf2 var \cf1 temp \cf3 = \cf2 new String\cf1 (name);\par
+temp.last \cf3 = \cf4 "Zakas"\cf1 ;\par
+temp \cf3 = \cf2 null\cf1 ; \cf7 // temporary object destroyed\par
+\cf2 var \cf1 temp \cf3 = \cf2 new String\cf1 (name);\par
+console.log(temp.last); \cf7 // undefined\par
+
+\pard\sa200\sl276\slmult1\cf1 temp \cf3 = \cf2 null\cf1 ;\par
+\par
+
+\pard\cf0\f1\fs24  \cf1\fs20 Instead of assigning a new property to a string, the code actually\par
+creates a new property on a temporary object that is then destroyed.\par
+When you try to access that property later, a different object is temporarily created and the new property doesn\rquote t exist there. Although reference\par
+values are created automatically for primitive values, when \f3\fs17 instanceof\par
+\f1\fs20 checks for these types of values the result is \f3\fs17 false\f1\fs20 :\par
+\cf2\f3\fs17 var \cf1 name \cf3 = \cf4 "Nicholas"\cf1 ;\par
+\cf2 var \cf1 count \cf3 = 10\cf1 ;\par
+\cf2 var \cf1 found \cf3 = \cf2 false\cf1 ;\par
+console.log(name instanceof String); \cf7 // false\par
+\cf1 console.log(count instanceof Number); \cf7 // false\par
+
+\pard\sa200\sl276\slmult1\cf1 console.log(found instanceof Boolean); \cf7 // false\par
+\par
+
+\pard\cf0\f1\fs24  \cf1\fs20 The \f3\fs17 instanceof \f1\fs20 operator returns \f3\fs17 false \f1\fs20 because a temporary object is\par
+created only when a value is read. Because \f3\fs17 instanceof \f1\fs20 doesn\rquote t actually read\par
+anything, no temporary objects are created, and it tells us the values aren\rquote t\par
+instances of primitive wrapper types. You can create primitive wrapper\par
+types manually, but there are certain side effects:\par
+\cf2\f3\fs17 var \cf1 name \cf3 = \cf2 new String\cf1 (\cf4 "Nicholas"\cf1 );\par
+\cf2 var \cf1 count \cf3 = \cf2 new Number\cf1 (\cf3 10\cf1 );\par
+\cf2 var \cf1 found \cf3 = \cf2 new Boolean\cf1 (\cf2 false\cf1 );\par
+console.log(\cf2 typeof \cf1 name); \cf7 // "object"\par
+\cf1 console.log(\cf2 typeof \cf1 count); \cf7 // "object"\par
+
+\pard\sa200\sl276\slmult1\cf1 console.log(\cf2 typeof \cf1 found); \cf7 // "object\f10 "\par
+\par
+\cf0\f4\fs22\lang9\par
+}
+ 

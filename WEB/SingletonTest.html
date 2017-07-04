@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Singlton Test</title>
+</head>
+<body >
+<div class="classbd" id="bd"></div>
+<script type="text/javascript">
+	
+
+
+
+var object = ({
+	obj : new Object,
+
+	obj : function(){
+		var obj = this.obj = window.obj = this;
+		return obj;
+	},
+	a : function(){
+		alert(typeof this.obj);
+	},
+	b : function(){
+		confirm(this.obj instanceof Object);
+	}
+	
+}).obj();
+
+
+</script>
+
+<style type="text/css">
+#bd{
+	width: 50%;
+	position: relative;;
+	margin: 0 auto;
+}
+	#table{
+		width: 100%
+	}
+	td{
+		width: 50%;
+	}
+</style>
+</body>
+</html>

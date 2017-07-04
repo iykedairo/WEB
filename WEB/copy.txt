@@ -1,0 +1,7 @@
+@echo off
+copy %1 C:\Users\USER\MEGA\WEB
+copy %1 C:\Users\USER\Dropbox\CODE\WEB
+copy %1 C:\Users\USER\Google Drive\WEB
+copy %1 C:\Users\USER\OneDrive\WEB
+copy %1 C:\Users\USER\SkyDrive\WEB
+...

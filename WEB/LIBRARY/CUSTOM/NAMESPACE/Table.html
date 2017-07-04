@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="custom.js"></script>
+	<title>Table Loader</title>
+</head>
+<body class="div">
+	<table id="table of these things" width="50%" border="1px"></table>
+
+<script type="text/javascript">
+function isElement(element){
+
+	element = document.getElementsByTagName(element)[0] || element;
+if(arguments.length != 0){
+if (typeof element === "object" && element.ownerDocument.body.contains(element) != undefined) {
+	console.log("It is contained in the body");
+	alert(element.id);
+	EventUtil.CreateRow(element);
+}
+}
+
+else{
+	EventUtil.CreateTable();
+
+	}
+	
+	
+	
+}
+isElement("table");
+/*
+function isHTML(str) {
+    var a = document.createElement('div');
+    a.innerHTML = str;
+    for (var c = a.childNodes, i = c.length; i--; ) {
+        if (c[i].nodeType == 1) return true; 
+    }
+    return false;
+}
+
+The idea is to allow browsers DOM parser to decide if provided string looks like an HTML or not. As you can see I'm simply checking for ELEMENT_NODE (nodeType of 1).
+
+I made a couple of tests and it looks like it works:
+
+isHTML('<a>this is a string</a>') // true
+isHTML('this is a string')        // false
+isHTML('this is a <b>string</b>') // true
+
+function isHTML(str) {
+    var doc = new DOMParser().parseFromString(str, "text/html");
+    return Array.from(doc.body.childNodes).some(node => node.nodeType === 1);
+}
+
+Notes:
+1. Array.from is ES2015 method, can be replaced with [].slice.call(doc.body.childNodes).
+2. Arrow function in some call can be replaced with usual anonymous function.
+
+var x = document.getElementById("myP").nodeName;
+
+var x = document.getElementById("myP").tagName;
+
+var x = document.getElementById("myP").nodeType;
+*/
+
+
+</script>
+</body>
+</html>
+
+

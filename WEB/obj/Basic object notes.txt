@@ -1,0 +1,48 @@
+﻿		UNDERSTANDING PRIMITIVE TYPES AND REFERENCE TYPES
+
+programming in JavaScript is like starting with a blank slate.
+Although JavaScript has no concept of classes, it still uses two kinds of
+types: primitive and reference. Primitive types are stored as simple data
+types. Reference types are stored as objects, which are really just references
+to locations in memory.
+
+To ease the transition from traditional object-oriented languages,
+JavaScript makes objects the central part of the language. Almost all data
+in JavaScript is either an object or accessed through objects. In fact, even
+functions (which languages traditionally make you jump through hoops
+to get references to) are represented as objects in JavaScript, which makes
+them frst-class function
+
+Primitive values and reference values behave quite differently
+although they may initially seem the same.
+
+Primitive Types
+Primitive types represent simple pieces of data that are stored as is, such
+as true and 25. There are five primitive types in JavaScript:
+Boolean true or false
+Number Any integer or ﬂoating-point numeric value
+String A character or sequence of characters delimited
+by either single or double quotes (JavaScript has no
+separate character type)
+Null A primitive type that has only one value, null
+Undefned A primitive type that has only one value, undefined
+(undefined is the value assigned to a variable that is not
+initialized)
+The first three types (Boolean, number, and string) behave in similar
+ways, while the last two (null and undefned) work a bit differently, as will
+be discussed throughout this chapter. All primitive types have literal representations of their values. Literals represent values that aren’t stored in a
+variable, such as a hardcoded name or price. Here are some examples of
+each type using its literal form:
+// strings
+var name = "Nicholas";
+var selection = "a";
+// numbers
+var count = 25;
+var cost = 1.51;
+// boolean
+var found = true;
+// null
+var object = null;
+// undefined
+var flag = undefined;
+var ref; // assigned undefined automaticall

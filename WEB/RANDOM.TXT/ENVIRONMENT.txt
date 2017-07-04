@@ -1,0 +1,549 @@
+[Environment]::SetEnvironmentVariable("PYTHON","$env:PYTHON;C:\Python27","User") 
+
+
+[Environment]::SetEnvironmentVariable("RUBY","$env:RUBY;C:\Ruby22\bin","User")
+
+
+[Environment]::SetEnvironmentVariable("JAVA","$env:JAVA;C:\Program Files\Java\jdk1.8.0_91\bin","User") 
+
+Perishable Press
+
+WordPress, Web Design, Code & Tutorials
+ 
+[ENVIRONMENT]::SetEnvironmentVariable("PATH","$env:PATH;C:\","User")
+
+
+
+
+
+C:\Program Files\Java\jdk1.8.0_91\bin
+
+C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Ruby22\bin;C:\Python27;C:\WEB
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Plugins
+
+
+
+
+ 
+Archives
+
+
+
+
+
+
+
+
+
+
+ 
+Demos
+
+ 
+Tools
+
+ 
+
+
+
+
+
+
+
+
+
+
+« 5-Minute PNG Image Optimization
+
+How to Take DVD/Video Screenshots on Windows »
+
+
+
+
+9 Ways to Set Dynamic Body IDs via PHP and WordPress 
+
+
+When designing sites, it is often useful to identify different pages by adding an ID attribute to the <body> element. Commonly, the name of the page is used as the attribute value, for example:
+
+<body id="about">
+
+In this case, “about” would be the body ID for the “About” page, which would be named something like “about.php”. Likewise, other pages would have unique IDs as well, for example:
+<body id="archive">
+<body id="contact">
+<body id="subscribe">
+<body id="portfolio">
+
+..again, with each ID associated with the name of the page. This identification strategy is useful for a variety of reasons, including the following:
+•Page-specific control over CSS via descendant selectors
+•Page-specific DOM manipulation via JavaScript
+•Page-specific control over the navigational interface, current-page highlighting et al
+•Page-specific content-inclusion via conditional PHP if() statements
+
+For page-specific control over your design, using the current page name as the body ID will certainly do the trick. The question is, what is the best way to go about defining the different attributes? For static sites or for sites with only a few pages, it might be easiest to just add the IDs manually. For larger, dynamic sites, however, you can automate the process with the magical powers of PHP. 
+
+
+
+The basic idea is simple: use PHP to dynamically check the URL, extract the file name, and echo the name as the body ID for that specific page. The cool thing is that, once the page name is captured as a PHP variable, it can be tested conditionally to include or exclude page-specific content. This is a great way to consolidate and streamline content into a single file.
+
+There are probably a million different ways to accomplish this sort of functionality, but I am only familiar with about nine different techniques, which actually do pretty much the same basic thing only in different ways. Even so, I apply body IDs for page-specific CSS styling all the time, and have refined my collection of PHP snippets to include the following nine ways of getting it done. Enjoy!
+
+Method 1
+
+This method captures the requested URI as a $page variable and then strips out everything except for the file name. The $page variable is then echoed as the ID attribute for the body element.
+<?php 
+$page = $_SERVER['REQUEST_URI']; 
+$page = str_replace('/', '', $page); 
+$page = str_replace('.php', '', $page); 
+$page = str_replace('?s=', '', $page); 
+$page = $page ? $page : 'default'; 
+?>
+
+<body id="<?php echo $page ?>">
+
+Method 2
+
+This variation streamlines the syntax of the previous method by using an array for the str_replace() function. I’m sure there is an even more efficient way of writing this, so speak up if you happen to know of one.
+<?php 
+$page = str_replace(array('/', '.php', '?s='), '', $_SERVER['REQUEST_URI']); 
+$page = $page ? $page : 'default'; 
+?>
+
+<body id="<?php echo $page ?>">
+
+Method 3
+
+This method cuts to the chase by echoing the name of the PHP file directly (after removing the “.php” extension). I use this technique in my dark n’ minimalist Perishable theme (opens new tab). Note the convenient shortcut syntax for echo() for greater efficiency.
+<body id="<?=basename($_SERVER['PHP_SELF'],'.php')?>">
+
+Method 4
+
+If I remember correctly, I discovered this technique from one of Chris Coyier’s excellent screencasts. I had to squint hard and type fast to catch it, but the code works great and I love having it at my disposal. The cool thing about this technique is that it echoes the name of the first-level directory and discards any subsequent directory information. Thanks Chris! :)
+<?php 
+$url = explode('/', $_SERVER['REQUEST_URI']); 
+$dir = $url[1] ? $url[1] : 'home'; 
+?>
+
+<body id="<?php echo $dir ?>">
+
+Method 5
+
+Here is a more versatile method that I learned from Trevor Davis. The benefit of this technique is that it enables you to specify the same body ID for multiple pages. The script captures the requested URI as a $path variable and then pattern-matches against user-defined character strings to determine its value. You could even adapt this script to set variables according to an entire range of pages.
+<?php
+function setBodyId() {
+
+    $path = $_SERVER['REQUEST_URI'];
+
+    if(!isset($bodyId)) {
+
+		if(eregi('^/about/', $path) == 1) {
+
+			$bodyId = 'about';
+
+		} elseif(eregi('^/archive/', $path) == 1) {
+
+			$bodyId = 'archive';
+
+		} elseif(eregi('^/contact/', $path) == 1) {
+
+			$bodyId = 'contact';
+
+		} elseif(eregi('^/business/', $path) == 1) {
+
+			$bodyId = 'business';
+
+		} elseif(eregi('^/pleasure/', $path) == 1) {
+
+			$bodyId = 'pleasure';
+
+		} elseif ($path == '') {
+
+			$bodyId = 'home';
+
+		} else {
+
+			$bodyId = 'default';
+		}
+	}
+	return $bodyId;
+}
+$bodyId = SetBodyId();
+?>
+
+<body id="<?=$bodyId;?>">
+
+Earlier I discussed the idea of using the page-specific body ID to include conditional content. Here we may see an example of this technique by using the $bodyId variable from Trevor’s script:
+<?php if($bodyId == 'home') {
+
+// content placed here will only appear on the home page
+
+} ?>
+
+Method 6: WordPress
+
+Moving on to WordPress-specific methods, here is a technique that Elliot Jay Stocks adapted from Darren Hoyt (404 link removed). The idea here is to take advantage of WordPress’ conditional tags in order to output the desired <body> ID:
+<?php if (is_home()) { ?>
+
+	<body id="home">
+
+<?php } elseif (is_archive) { ?>
+
+	<body id="archive">
+
+<?php } else { ?>
+
+	<body class="<?php echo $post->post_name; ?>">
+
+<?php } ?>
+
+Notice how this technique cleverly outputs the post_name variable for pages without an ID. This method certainly is useful, and there is much more that may be done with it.
+
+Method 7: WordPress
+
+Taking the conditional-tag method further,  shows us how to expand the script and clean things up by placing it the functions.php file:
+<?php // dynamic body IDs
+
+function dynamicBodyID() {
+
+	if (is_home()) {
+
+		echo ' id="home"';
+
+	} elseif (is_single()) {
+
+		echo ' id="single"';
+
+	} elseif (is_search()) {
+
+		echo ' id="search"';
+
+	} elseif (is_archive()) {
+
+		echo ' id="archive"';
+	}
+}
+?>
+
+This function is then called via the following code placed in your theme template:
+
+<body<?php dynamicBodyID(); ?>>
+
+Then, as with method #6, we may modify this technique to add a post-specific class to every single post page:
+<?php // dynamic body IDs
+
+function mytheme_body_control() {
+
+	global $post; 
+	$postclass = $post->post_name;
+ 
+	if (is_home()) {
+
+		echo ' id="home"';
+
+	} elseif (is_single()) {
+
+		echo ' id="single" class="'.$postclass.'"';
+
+	} elseif (is_search()) {
+
+		echo ' id="search"';
+
+	} elseif (is_archive()) {
+
+		echo ' id="archive"';
+	}
+}
+?>
+
+And once again, this function is then called via the following code placed in your theme template:
+
+<body<?php dynamicBodyID(); ?>>
+
+Method 8: WordPress
+
+Here is a WordPress method that echoes the name of the parent page as the <body> ID, regardless of whether or not the page is a sub-page (or child-page). As we have seen, we can echo the name of any post or page via the following code: 
+
+<body id="<?php echo $post->post_name; ?>">
+
+However, for pages that are children of parent pages, this snippet will echo the name of the child page instead of the name of the parent page, which may be more useful for the purposes of CSS styling. Fortunately, we may find a solution for this via plaintxt.org’s (404 link removed 2014/10/28) excellent Sandbox Theme for WordPress (404 link removed 2013/07/10):
+<?php
+	$current_page = $post->ID;
+	$parent = 1;
+
+	while($parent) {
+		$page_query = $wpdb->get_row("SELECT post_name, post_parent FROM $wpdb->posts WHERE ID = '$current_page'");
+		$parent = $current_page = $page_query->post_parent;
+		if(!$parent) $parent_name = $page_query->post_name;
+	}
+?>
+
+This code would then be followed by this line of code:
+<body id="<?php echo (is_page()) ? "$parent_name" : ((is_home()) ? "blog" : ((is_search()) ? "other" : ((is_single()) ? "blog" : "blog"))); ?>">
+
+That is all well and good for current versions of WordPress, but as we will see in the next example, the soon-to-be-released WordPress 2.8 includes a built-in method for applying page-specific body IDs that simplifies the process to the point of absurdity!
+
+Method 9: WordPress
+
+Those of you who keep up with the relentless evolution of WordPress certainly have heard about the new body_class() tag that is due out in version 2.8. As WPengineer points out, by simply including this in the <body> element:
+<body <?php body_class(); ?>>
+
+..you get something like this in your source-code output:
+<body class="page-template page-template-tutorial-php logged-in">
+
+Pure awesome-ness. Here is a list of the available classes for the new body_class() tag:
+•rtl
+•home
+•blog
+•archive
+•date
+•search
+•paged
+•attachment
+•error404
+•single postid-(id)
+•attachmentid-(id)
+•attachment-(mime-type)
+•author
+•author-(user_nicename)
+•category
+•category-(slug)
+•tag
+•tag-(slug)
+•page-parent
+•page-child parent-pageid-(id)
+•page-template page-template-(template file name)
+•search-results
+•search-no-results
+•logged-in
+•paged-(page number)
+•single-paged-(page number)
+•page-paged-(page number)
+•category-paged-(page number)
+•tag-paged-(page number)
+•date-paged-(page number)
+•author-paged-(page number)
+•search-paged-(page number)
+
+Obligatory Hendrix Perm
+
+The best part about running a personal, non-commercial blog such as Perishable Press is that I get to do and say whatever I want. I usually play it straight, sticking to the script and focusing on the topic at hand, but every now and then, I just gotsta exercise my right to cut loose and have a little fun. So today, instead of another boring and predictable article summary, I thought I would wrap things up with an obligatory nod to a song from my favorite band. Take that, sleepwalkers! ;)
+
+
+
+
+Related posts:
+1.Perfect WordPress Title Tags Redux 
+2.Conditionally Load WordPress Pages 
+3.How to Generate Perfect WordPress Title Tags without a Plugin 
+4.Better WordPress Archives via Dynamic Triple Column Layout 
+5.3 Ways to Preload Images with CSS, JavaScript, or Ajax 
+
+
+
+
+Instant karma
+
+
+
+
+Tweet 
+
+ 
+
+  
+ 
+Share with others 
+
+
+
+About this post
+Author: Jeff Starr
+Archived: May 26, 2009
+Updated: Oct 28th, 2014
+Category: CSS, JavaScript, PHP, WordPress
+Tags: tips, tricks
+
+Check the sidebar for related posts »
+
+
+Check it out
+The Tao of WordPress  
+
+Comments
+
+« Previous 1 2 3
+
+
+Jermaine November 26, 2009 at 5:50 am	 
+
+
+Thanks for this, it came in very usefull today at work
+
+ 
+
+NeoSting December 2, 2009 at 3:18 pm	 
+
+
+Very useful. I was looking for différent méthods, but before, i had in mind to use the WordPress one, the 6th you show. But after reading your very good post, i am now decided to use the 7th, a little bit better. I think it is probably good enough for what it has to do.
+
+ 
+
+SohoInteractive January 12, 2010 at 5:21 pm	 
+
+
+nice trick.
+ thanks for sharing.
+
+ 
+
+darrinb May 31, 2010 at 12:30 pm	 
+
+
+Thanks for all the different ways you listed! I recently wrote a function that addresses this very thing for WordPress sites utilizing WP’s Conditional Tags and placing everything in the functions.php file. I figured I’d share it since this was one of the few articles I came across while doing research on the subject.
+
+http://darrinb.com/notes/2010/add-a-custom-id-to-the-body-element-in-wordpress/
+
+ 
+
+Bobbie Barginear June 21, 2010 at 10:42 am	 
+
+
+You would not believe how long ive been searching for something like this. Scrolled through 8 pages of Yahoo results and couldnt find anything. First page of bing. There was this…. Really gotta start using that more often Thank you.
+
+ 
+« Previous 1 2 3
+
+
+Comments are closed. Contact the author with questions or further information.
+
+
+« 5-Minute PNG Image Optimization
+
+How to Take DVD/Video Screenshots on Windows »
+
+
+RSS Feed Google+ Facebook LinkedIn Tumblr Twitter WordPress.org 
+
+Perishable Press
+
+
+   
+
+       
+BBQ Pro - Block Bad Queries WordPress Book 
+
+
+
+Perishable Press Newsletter
+
+ 
+ 
+
+
+
+
+
+
+Your email will remain private.
+Easy unsubscribe anytime.
+  
+
+Related Posts
+
+1.Perfect WordPress Title Tags Redux
+2.Conditionally Load WordPress Pages
+3.How to Generate Perfect WordPress Title Tags without a Plugin
+4.Better WordPress Archives via Dynamic Triple Column Layout
+5.3 Ways to Preload Images with CSS, JavaScript, or Ajax
+
+USP Pro The Tao of WordPress .htaccess made easy 
+
+
+Popular Posts
+•5G Blacklist 2013
+•Blackhole for Bad Bots
+•Stupid WordPress Tricks
+•Stupid htaccess Tricks
+•How to Block Tough Proxies
+•Better Robots.txt for WordPress
+•The Power of HTML5 and CSS3
+
+
+   
+
+Recent Comments
+•Jeff Starr: That's good to know! I'll do some further research and maybe remove AOL from the list. Thanks for bringing it…
+•Scott Allen: Hey Jeff, Great list! AOL results are now powered by Bing, and previously were powered by Google.…
+•Jeff Starr: Pretty sure Bingbot is included (third on the list).
+•haluk karamete: Hi Jeff, How come BINGBOT is not part of this list? Isn't it one of the…
+•Rishi: I've absolutely loved running PHP7 on SiteGround since it was first released as a CPanel option. No going back. :-)
+•Jeff Starr: Yes of course .htaccess-level of protection is fine. As long as the backup files are not publicly accessible, it's all…
+•Jeff Starr: Deactivating plugins generally is a good troubleshooting technique, but it was irrelevant in this case due to reasons explained in…
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+Books
+•The Tao of WordPress
+•Digging into WordPress
+•.htaccess made easy
+•WordPress Themes In Depth
+
+
+Projects
+•BBQ Pro
+•SES Pro
+•USP Pro
+•Plugin Planet
+•WP Security Screencast
+•WP-Mix
+•CSSresetr
+•xyCSS
+•eChunks
+
+Jeff Starr (aka Perishable)
+Jeff Starr (aka Perishable)
+
+
+About the site
+
+Perishable Press is the work of Jeff Starr, professional developer, designer, author, and publisher with over 10 years of experience. Check out some of Jeff's books and projects, follow on Twitter, or learn more » 
+
+Fun fact: Perishable Press has been online since 2005, and features over 800 articles and more than 11,000 comments. More stats »
+
+
+© 2005–2016 Perishable Press
+ ¤Sitemap
+ ¤Site Credits
+ ¤shapeSpace
+ ¤Web Design by Monzilla Media
+ 
+
+   

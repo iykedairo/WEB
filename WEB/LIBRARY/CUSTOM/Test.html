@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Testing Script Loading</title>
+	<script type="text/javascript" src="New Custom.js"></script>
+	<!-- <script type="text/javascript" src="NEW.js"></script> -->
+</head>
+<body>
+<article>
+	<h1 id="lorem">Lorem Ipsum</h1>
+<div class="lore">
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+<h1 id="h1" class="h">Heading One</h1>
+<h2 id="h2" class="h">Heading Two</h2>
+<h3 id="h3" class="h">Heading Three</h3>
+<div class="someclass">
+    <img id="image1" class="First" name="image1" />
+</div>
+</article>
+<script type="text/javascript">
+
+var lore = window.SAPI.qs(".lore");
+lore.style.color = "red";
+var lorem = SAPI.tagName("div")[0];
+//lorem.style.display = "none";
+var h2 = SAPI.qs("#h2");
+//var attr = SAPI.getAttr();
+//alert(attr);// [Object Object]
+//console.log(attr);
+var div = SAPI.tagName("h1")[0];
+var h7 = new Object();
+PT.log(PT.isAbsent(h7));
+</script>
+<script>
+var at = SAPI.qs("div > img");
+
+at.className += " Anotherclass";
+SAPI.addClass(at, "second");
+SAPI.addClass(at, "third");
+SAPI.addClass(at, "fourth");
+alert(SAPI.hasClass(at, "second"));
+//at.className += " Anotherclass";
+at.textContent = "<h1>WE OWN THE PLACE!</h1>"
+
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+<title>Images Dynamo</title>
+</head>
+<body>
+<script type="text/javascript">
+	var singleton = !(function(){
+
+
+var div = document.createElement("div");
+div.id = "wrapper";
+//div.innerHTML = "I love Jesus.";
+var body = document.body;
+body.insertBefore(div, body.children[0]);
+
+var currentImage = 0;
+
+/*while(currentImage <= 12){
+	var images = new Image();
+images.src = "images/" + currentImage + ".jpg";
+images.alt = "Whoops!";
+images.title = currentImage;
+
+div.insertBefore(images, div.children[0]);
+currentImage++;
+}*/
+for(; currentImage < 11; currentImage++){
+	var images = new Image();
+images.src = "img/" + currentImage + ".jpg";
+images.alt = "Whoops!";
+images.title = currentImage;
+image.alt = "Number " + numImages;
+ 	image.value = "Number " + numImages;
+div.insertBefore(images, div.children[0]);
+}
+})();
+</script>
+<style type="text/css">
+ 		img{
+ 			display: inline;
+ 			width: 19%;
+ 			height: 20em;
+ 		}
+ 		#wrapper{
+ 			width: 95%;
+ 		}
+ 	</style> 
+
+
+</body>
+</html>
+

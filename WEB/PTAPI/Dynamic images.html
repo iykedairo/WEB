@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Dynamic Images</title>
+</head>
+<body>
+
+
+<script type="text/javascript"> 
+//Grab the html div by its id attribute 
+//and store it in a var named container 
+var div = document.createElement("div");
+div.id = "wrapper";
+document.getElementsByTagName("body")[0].appendChild(div);
+var container = document.getElementById("wrapper"); 
+//create the var containing the counter 
+//and give it an initial value of 0 
+var numImages = 0; 
+//start the loop: while the number of images is less than or equal to 10
+ //keep cycling and increase the counter by 1 
+ /*while (numImages <= 10) { 
+ 	//this is the block of code to be executed: 
+ 	//build the string to insert in the HTML document and store it in the newImage var 
+ 	//Take note:make sure the img src corresponds to a real image file 
+ 	//var newImage = '<img src="images/1.jpg" alt="#" />' + numImages; 
+ 	var image = new Image();
+ 	image.src = "images/" + numImages + ".jpg";
+ 	image.title = numImages;
+ 	//use the container var that stores the div element 
+ 	//and use innerHTML to insert the string stored in the newImage var 
+ 	//Use shortcut assignment += so previous values do not get wiped off 
+ 	container.insertBefore(image, container.children[0]); 
+ 	//increase the counter by 1 using the increment operator 
+ 	numImages ++; 
+ 	} 
+*/
+ 	for(; numImages < 20; numImages++){
+ 		var image = new Image();
+ 	image.src = "img/" + numImages + ".jpg";
+ 	image.title = numImages;
+ 	image.alt = "Number " + numImages;
+ 	image.value = "Number " + numImages;
+ 	container.insertBefore(image, container.children[0]); 
+ 	
+ 	}
+ 	</script>
+
+ 	<style type="text/css">
+ 		img{
+ 			display: inline;
+ 			width: 19%;
+ 			height: 20em;
+ 		}
+ 		#wrapper{
+ 			width: 95%;
+ 		}
+ 	</style> 
+</body>
+</html>

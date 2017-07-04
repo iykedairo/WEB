@@ -1,0 +1,125 @@
+﻿var image = document.getElementById(“myImage”);
+EventUtil.addHandler(image, “load”, function(event){
+event = EventUtil.getEvent(event);
+alert(EventUtil.getTarget(event).src);
+});
+
+EventUtil.addHandler(window, “load”, function(){
+var image = document.createElement(“img”);
+EventUtil.addHandler(image, “load”, function(event){
+event = EventUtil.getEvent(event);
+alert(EventUtil.getTarget(event).src);
+});
+document.body.appendChild(image);
+image.src = “smile.gif”;
+});
+
+//Please try it out. just put an image in the dir, link the the file to page and link the image.
+
+//DOM LEVEL 0 way but same thing
+EventUtil.addHandler(window, “load”, function(){
+var image = new Image();
+EventUtil.addHandler(image, “load”, function(event){
+alert(“Image loaded!”);
+});
+image.src = “smile.gif”;
+});
+
+
+EventUtil.addHandler(window, “load”, function(){
+var script = document.createElement(“script”);
+script.type = “text/javascript”;
+EventUtil.addHandler(script, “load”, function(event){
+alert(“Loaded”);
+});
+script.src = “example.js”;
+document.body.appendChild(script);
+});
+//load event on script is not suported in opera and explorer < 8. they support it on link to use it to determin if the css
+//has been fully loaded but on script, no. so you might want to use another event like click in place of the script.
+//
+EventUtil.addHandler(window, “load”, function(){
+var link = document.createElement(“link”);
+link.type = “text/css”;
+link.rel= “stylesheet”;
+EventUtil.addHandler(link, “load”, function(event){
+alert(“css loaded”);
+});
+link.href = “example.css”;
+document.getElementsByTagName(“head”)[0].appendChild(link);
+});
+
+///////////////
+EventUtil.addHandler(window, “scroll”, function(event){
+if (document.compatMode == “CSS1Compat”){
+alert(document.documentElement.scrollTop);
+} else {
+alert(document.body.scrollTop);
+}
+});
+/*
+Focus events are fired when elements of a page receive or lose focus. These events work in concert
+with the document.hasFocus() and document.activeElement properties to give insight as to how
+the user is navigating the page. There are six focus events:
+blur — Fires when an element has lost focus. This event does not bubble and is supported
+in all browsers.
+DOMFocusIn — Fires when an element has received focus. This is a bubbling version of the
+focus HTML event. Opera is the only major browser to support this event. DOM Level 3
+Events deprecates DOMFocusIn in favor of focusin.
+DOMFocusOut — Fires when an element has lost focus. This is a generic version of the blur
+HTML event. Opera is the only major browser to support this event. DOM Level 3 Events
+deprecates DOMFocusOut in favor of focusout.
+focus — Fires when an element has received focus. This event does not bubble and is
+supported in all browsers.
+focusin — Fires when an element has received focus. This is a bubbling version of the focus
+HTML event and is supported in Internet Explorer 5.5+, Safari 5.1+, Opera 11.5+, and Chrome.
+focusout — Fires when an element has lost focus. This is a generic version of the blur HTML
+event and is supported in Internet Explorer 5.5+, Safari 5.1+, Opera 11.5+, and Chrome.
+The two primary events of this group are focus and blur, both of which have been supported
+in browsers since the early days of JavaScript. One of the biggest issues with these events is that
+they don’t bubble. This led to the inclusion of focusin and focusout by Internet Explorer and
+DOMFocusIn and DOMFocusOut by Opera. Internet Explorer’s approach has been standardized in
+DOM Level 3 Events.
+When focus is moved from one element to another on the page, the following order of events
+is followed:
+1. focusout fi res on the element losing focus.
+2. focusin fi res on the element receiving focus.
+3. blur fi res on the element losing focus.
+4. DOMFocusOut fi res on the element losing focus.
+5. focus fi res on the element receiving focus.
+6. DOMFocusIn fi res on the element receiving focus.
+The event target for blur, DOMFocusOut, and focusout is the element losing focus while the event
+target for focus, DOMFocusIn, and focusin is the element receiving focus.
+You can determine if a browser supports these events with the following:
+var isSupported = document.implementation.hasFeature(“FocusEvent”, “3.0”);
+➤
+*/
+
+//clientX, and clientY coordinates
+var div = document.getElementById(“myDiv”);
+EventUtil.addHandler(div, “click”, function(event){
+event = EventUtil.getEvent(event);
+alert(“Client coordinates: “ + event.clientX + “,” + event.clientY);
+});
+//Exact pageX,and pageY coordinates
+var div = document.getElementById(“myDiv”);
+EventUtil.addHandler(div, “click”, function(event){
+event = EventUtil.getEvent(event);
+alert(“Page coordinates: “ + event.pageX + “,” + event.pageY);
+});
+////////////////////
+var div = document.getElementById(“myDiv”);
+EventUtil.addHandler(div, “click”, function(event){
+event = EventUtil.getEvent(event);
+var pageX = event.pageX,
+pageY = event.pageY;
+if (pageX === undefined){
+pageX = event.clientX + (document.body.scrollLeft ||
+document.documentElement.scrollLeft);
+}
+if (pageY === undefined){
+pageY = event.clientY + (document.body.scrollTop ||
+document.documentElement.scrollTop);
+}
+alert(“Page coordinates: “ + pageX + “,” + pageY);
+});

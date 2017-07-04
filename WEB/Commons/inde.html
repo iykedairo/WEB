@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" defer="defer" src="custom.js"></script>
+<title>Calc</title>
+
+</head>
+<body>
+<div id="d"> I'd like to find out really!</div>
+<p id="demo">Click me to change my HTML Content(innerHTML).</p>
+<input type="text" id="ty" placeholder="Type . . .">
+<input type="button" id="bt" value="Click" onclick="myFunction()">
+<div id="em"></div>
+<script>
+EventUtil.addHandler(window, "load", function(){
+var script = document.createElement("script");
+script.type = "text/javascript";
+
+EventUtil.addHandler(script, "load", function(event){
+    script.src = "test.js";
+
+alert("Loaded");
+});
+    document.body.appendChild(script);
+});
+
+
+function myFunction(){
+var d = document.getElementById("d");
+d.innerText = "Yo! I have clicked!!";
+var demo = document.getElementById("demo");
+var b = demo.innerText= "Paragraph changed!";
+var em = document.getElementById("em");
+var ty = document.getElementById("ty");
+EventUtil.addHandler(window, "load", alert("Hey!"));
+/*adjacentHtml(), appendChild(),textContent(), insertBefore(),
+ toggle(),
+ */
+em.textContent = ty.value;
+
+var newItem = document.createElement("p");
+var textNode = document.createTextNode("Water");
+newItem.appendChild(textNode);
+}
+</script>
+
+
+
+<!--<div id="folder">
+	<h2 id="inputz">Input goes here . . .</h2>
+	<input type="button" id="btn" name="clicks" value="Clicks"/>
+	<input type="text" id="amount" name="numz" placeholder="Amount here ..."/>
+	<div>
+		<h2>Result goes here . . .</h2>
+		<h3 id="total">Total: <span id="resultz"></span></h3>
+	</div>
+</div>-->
+</body>
+</html>

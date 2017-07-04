@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+_site
+.sass-cache
+.jekyll-metadata
+=======
+# Object file
+*.o
+
+# Ada Library Information
+*.ali
+>>>>>>> 20cba93766d0b2f516f705eeda08ed9d6d2b15f6

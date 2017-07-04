@@ -1,0 +1,8 @@
+Disk format
+format /? - - help
+format D:/NTFS /V:DVDRWDrive(D:) /P:0
+i.e format drive D into NTFS, volume label is should be DVDRWDrive(D:), passes eqaul zero
+
+convert file system to NTFS
+
+convert D:/FS:NTFS //Administrator

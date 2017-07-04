@@ -1,0 +1,63 @@
+                           Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+C:\WINDOWS\system32>xcopy /?
+Copies files and directory trees.
+
+XCOPY source [destination] [/A | /M] [/D[:date]] [/P] [/S [/E]] [/V] [/W
+                           [/C] [/I] [/Q] [/F] [/L] [/G] [/H] [/R] [/T]
+                           [/K] [/N] [/O] [/X] [/Y] [/-Y] [/Z] [/B] [/J]
+                           [/EXCLUDE:file1[+file2][+file3]...]
+
+  source       Specifies the file(s) to copy.
+  destination  Specifies the location and/or name of new files.
+  /A           Copies only files with the archive attribute set,
+               doesn't change the attribute.
+  /M           Copies only files with the archive attribute set,
+               turns off the archive attribute.
+  /D:m-d-y     Copies files changed on or after the specified date.
+               If no date is given, copies only those files whose
+               source time is newer than the destination time.
+  /EXCLUDE:file1[+file2][+file3]...
+               Specifies a list of files containing strings.  Each strin
+               should be in a separate line in the files.  When any of t
+               strings match any part of the absolute path of the file t
+               copied, that file will be excluded from being copied.  Fo
+               example, specifying a string like \obj\ or .obj will excl
+               all files underneath the directory obj or all files with
+               .obj extension respectively.
+  /P           Prompts you before creating each destination file.
+  /S           Copies directories and subdirectories except empty ones.
+  /E           Copies directories and subdirectories, including empty on
+               Same as /S /E. May be used to modify /T.
+  /V           Verifies the size of each new file.
+  /W           Prompts you to press a key before copying.
+  /C           Continues copying even if errors occur.
+  /I           If destination does not exist and copying more than one f
+               assumes that destination must be a directory.
+  /Q           Does not display file names while copying.
+  /F           Displays full source and destination file names while cop
+  /L           Displays files that would be copied.
+  /G           Allows the copying of encrypted files to destination that
+               not support encryption.
+  /H           Copies hidden and system files also.
+  /R           Overwrites read-only files.
+  /T           Creates directory structure, but does not copy files. Doe
+               include empty directories or subdirectories. /T /E includ
+               empty directories and subdirectories.
+  /U           Copies only files that already exist in destination.
+  /K           Copies attributes. Normal Xcopy will reset read-only attr
+  /N           Copies using the generated short names.
+  /O           Copies file ownership and ACL information.
+  /X           Copies file audit settings (implies /O).
+  /Y           Suppresses prompting to confirm you want to overwrite an
+               existing destination file.
+  /-Y          Causes prompting to confirm you want to overwrite an
+               existing destination file.
+  /Z           Copies networked files in restartable mode.
+  /B           Copies the Symbolic Link itself versus the target of the
+  /J           Copies using unbuffered I/O. Recommended for very large f
+
+The switch /Y may be preset in the COPYCMD environment variable.
+This may be overridden with /-Y on the command line.
+
+C:\WINDOWS\system32>

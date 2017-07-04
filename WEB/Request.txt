@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script type="text/javascript" src="jQuery-1.12.4.js"></script>
+  <title>Document</title>
+ </head>
+ <body>
+ <h1 id="shop" class="shop" > shop</h1>
+ 
+ 
+ <script type="text/javascript">
+ var myObject = {
+		name: function(){
+		return "Michael";
+		}(),
+		age: 28,
+		sayName: function(){
+		alert(this.name + ":" + this.age); //undefined
+			}(),
+		specialFunction : function(){
+		myObject = this;
+		if(this == myObject){
+		alert(console.log(this.sayName)); //undefined
+		}
+		}()
+
+	};
+
+/*
+please can somebody help me figure out what is wrong in this code. I am trying to call the methods of an object from other methods in the same object but I'm just getting undefined.
+I'm thinking that inner scope object are allowed to access outer scope objects but this case disregards that rule. Thanks in advance.
+*/
+ </script>
+ </body>
+</html>

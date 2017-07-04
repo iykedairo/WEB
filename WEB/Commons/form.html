@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Form
+	</title>
+	
+</head>
+<body>
+<h2>Choose Your Car</h2> <hr/>
+<form>
+	<h3>Choose Car Model:
+	<select id="slct1" name="slct1" onchange="populate(this.id, 'slct2')">
+		<option value=""></option>
+		<option value="Chevy">Chevy</option>
+		<option value="Dodgy">Dodgy</option>
+		<option value="Ford">Ford</option>
+
+	</select></h3>
+<!-- ////////////////////////////////////// -->
+	<h3>Choose Car Make:
+	<select id="slct2" name="slct2">
+	</select></h3>
+<hr/>
+</form>
+
+
+
+
+<p>This example uses the HTML DOM to assign an "onclick" event to a p element.</p>
+
+<p id="demo">Click me.</p>
+
+
+
+
+
+	
+
+<script type="text/javascript">
+/*var  populate = {
+q: function(id){
+return document.querySelector(id);
+// document.querySelector ? document.querySelector(id) : document.querySelectorAll(id);
+},
+s1: q(s1),
+s2: q(s2),
+s2.innerHTML: null
+
+
+};*/
+/* if (s2.value == "Chevy") {
+ var optionArray = ["|", "camaro | camaro", "corvette|Corvette", "impalla|Impalla"];
+},
+
+else if (s2.value == "Dodge") {
+ var optionArray = ["|", "avenger | Avenger ", "challenger | challenger", "charger|Charger"];
+},
+
+else if (s2.value == "Ford") {
+ var optionArray = ["|", "mustang | Mustang", "shelby | Shelby"];
+},
+
+for(var option in optionArray){
+	var pair = optionArray[option].split("|");
+	var newOption = document.createElement("option");
+	newOption.value = pair[0];
+	newOption.innerHTML = pair[1];
+	s2.options.add(newOption);
+ }*/
+ function myFunction() {
+    //document.querySelectors("#demo").innerHTML = "YOU CLICKED ME!";
+	alert("Yeghey!!!!!!!")
+}
+ var q = function(id){
+return document.querySelector(id);
+// document.querySelector ? document.querySelector(id) : document.querySelectorAll(id);
+}();	
+ q("#demo").onclick = function() {myFunction()};
+
+
+	
+
+	</script>
+</body>
+</html>

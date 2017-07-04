@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<script type="text/javascript" src="../Javascript/custom.js"></script>
+<script type="text/javascript" src="insertTable.js"></script>
+	<title>Single Page Architecture</title>
+</head>
+<body>
+
+
+<div id="main">
+	<header>
+		<h1>Work in progress. . .</h1>
+	</header>
+
+<article id="project-body">
+	<p id="brief-intro">Let's begin.</p>
+
+	<div id="project">
+		<form method="post" action="" id="budget" name="budget" >
+
+		<p id="total">  <span id="total"></span></p>
+			<input type="reset" name="reset" id="reset" value="Reset All" title="start afresh" />
+
+		<p id="inputs">
+		<input type="text" name="item" id="item" placeholder="First Item" 	/>
+			<input type="digit" name="value" id="value" placeholder="value" />
+			<input type="button" id="submit"  value="Submit" title="click to submit" />
+			</p>
+			<div id="resultsPane">
+			<table id="Results" width="100%" border="1"></table>
+			   </div>
+			
+
+		</form>	
+	</div>
+
+</article>
+
+
+<footer id="footer">
+	<small>Copy Right &copy;: The Mikados Inc. Trade mark of the Basic Blocks Builders &trade;. <br /> All rights reserved.</small>
+</footer>
+</div>
+
+
+<script type="text/javascript">
+	!function(){
+				//SAPI denotes Selector API. 
+				//qs denotes querySelector(id)
+				//id denotes document.getElementById(id)
+			var Total = 0;
+			var total = SAPI.qs("span#total");
+			var resultsPane = SAPI.qs("#resultsPane");
+			var input = SAPI.tag("input");
+			var submit = SAPI.qs("#submit");
+			var item = SAPI.qs("#item");
+			var reset = SAPI.qs("#reset");
+			var value = SAPI.qs("#value");
+			var Results = SAPI.qs("#Results");
+				item.focus();
+
+
+			EventUtil.today(); //DATE on the page
+			EventUtil.addHandler(submit, "click", Foo); //Engine of addition
+			EventUtil.addHandler(document, "keydown", EnterKeyPress);
+			EventUtil.addHandler(reset, "click", Clear);
+
+
+			total.innerHTML = "Total: " + Total; //init the counter
+			function Food(){
+				var p = document.createElement("p");
+				p.name = "dynamic paragraphs";
+				 var dynamicps = SAPI.names("dynamic paragraphs");
+
+				Total += parseFloat(value.value, 10); //The elusive counter engine
+				console.log(item.value + ": " + Total);
+				total.innerHTML = "Total: " + Total; 
+				//var p = document.createFragment("p");
+				//Add each session of inputs to a paragraph and release
+				p.innerHTML = input[1].value + ":   " + input[2].value;
+				//resultsPane.addChild(p);	
+				resultsPane.appendChild(p);
+				var reset = Res();
+				console.log("Success!");
+
+		}
+
+		function Foo(){
+			var table = new Table(Results);
+				table.Cell.innerHTML = item.value;
+				table.anotherCell.innerHTML = value.value;
+				Total += parseFloat(value.value, 10); //The elusive counter engine
+				console.log(item.value + ": " + Total);
+				total.innerHTML = "Total: " + Total; 
+				var reset = Res();
+				console.log("Success!");
+
+
+
+		}
+
+
+
+//KEYCODE ENTER KEY PRESS		
+		function EnterKeyPress(event){
+		event = event || window.event;
+		if(event.keyCode == 13){
+		console.log("Session submitted. . .");
+		if( !value.value || !item.value){
+			console.log("Please supply the values.");
+		}
+
+		else { 
+			Foo();
+			console.log("Session values computed.");
+			}
+	}}
+		
+		
+
+
+
+		function Clear(){
+			//reset all fields here
+			Total = 0;
+			total.innerHTML = "Total: 0";
+			
+			resultsPane.innerHTML = null;
+			var reset = Res();
+			console.clear();
+			console.log("All values successfully cleared!");
+			
+			
+		};
+			
+			
+
+	function Res(){ 
+
+				item.value = "";
+			item.placeholder = "New item";
+			value.value = "";
+			value.placeholder = "The vlaue";
+			item.focus();
+			
+			
+			
+		}
+	
+	
+}();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+var touchX = {
+inputVal : document.getElementById("search").value,
+inputPlaceHolder : document.getElementById("search").placeholder,
+
+X : (function(){
+this.X = document.createElement("span");
+//find a way to make this input.value or placeholder.value
+X.innerText = "X";
+X.cssStyle = {font-weight:bold, position:absolute, right:2, width:4px, color:red};
+//created but not existing anywhere on the tree
+}(),
+
+apply : (inputVal || inputPlaceHolder) ? (inputPlaceHolder && inputVal = X): X,
+clickX : apply.onClick = function(){inputPlaceHolder && inputVal = " ";}
+//object ends
+};
+
+
+In html, create an X at the position expected and work with it first.
+
+Then, create the same html dynamically first and work with it. Then create it on page load. and work with it.

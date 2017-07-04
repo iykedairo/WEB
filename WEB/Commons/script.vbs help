@@ -1,0 +1,8 @@
+Start Registry Editor (Regedit.exe) and go to:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+
+Double-click Userinit value and change the value data from:
+wscript C:\WINDOWS\run.vbs,
+
+to the following: [Caution: Take special care when entering. You need to remove wscript part.]
+C:\Windows\system32\userinit.exe,

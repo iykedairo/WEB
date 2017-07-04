@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <script src="custom.js"></script>
+        <title>Simple Acidic Test</title>
+    </head>
+    <body>
+        <h1>Simple Acidic Test</h1>
+
+        <script>
+            EventUtil.addHandler(window, "load", function () {
+                var script = document.createElement("script");
+                script.type = "text/javascript";
+                EventUtil.addHandler(script, "load", function (event) {
+                });
+                script.src = "acidicTest.js";
+                document.body.appendChild(script);
+                
+            });
+
+            myFunction();
+        </script>
+    </body>
+</html>

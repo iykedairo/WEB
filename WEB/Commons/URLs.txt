@@ -1,0 +1,8 @@
+www.regularexpressions.info
+
+The Yahoo! User Interface (YUI) library was the fi rst to include parasitic
+combination inheritance in a widely distributed JavaScript library via the
+Y.extend() method. For more information on YUI, visit
+http://yuilibrary.com/
+
+ Go to www.javascriptworld.com and download source code for the Javascript Visual Quickstart book. Animations pie

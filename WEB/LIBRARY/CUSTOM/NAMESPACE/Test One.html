@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="" charset="utf-8"></script>
+		<title>Test One</title>
+	</head>
+	<body>
+
+<button id="test">Click Me!</button>
+
+		<script type="text/javascript">
+			(function foo() {
+				var SAPI = function() {
+
+				};
+				SAPI.prototype = {
+					//SAPI is short for Selector API. Just for selecting elements.
+					constructor:SAPI,
+					id : false,
+					class : true,
+					qs : false,
+					tagName : true,
+					name : true,
+					attr : false,
+					nthChild : true,
+					each : function(list, fn){
+						var i, length = list.length;
+						for(i = 0; i < length; i++){
+							fn.call(list[i], i);
+						}
+						return true;
+					},
+
+				};
+window.elem = window.SAPI = new SAPI;
+
+
+function Button(){
+this.clicked = false;
+this.click = function(){
+this.clicked = true;
+console.log(button.clicked, "The button has been clicked");
+};
+}
+var button = new Button();
+var elem = document.getElementById("test");
+elem.addEventListener("click", Button.apply(elem));
+				}());
+
+		</script>
+	</body>
+</htm>

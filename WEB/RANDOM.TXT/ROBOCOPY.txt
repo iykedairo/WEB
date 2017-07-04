@@ -1,0 +1,33 @@
+﻿ROBOCOPY C:\Users\USER\Desktop\Android H:\Android "*.*" /E /Z /EFSRAW /COPY:DAT /SEC /MOVe /IS
+
+/COPY:DATSOU = /COPYALL copies all file info along
+EFSRAW = encripted files to efsraw mode
+Z = copy files in restartable mode
+E = copy sub dirs including empty ones
+//SECFIX = fix file security on all files
+SEC = copy files with security
+MOV = move files from source after copying
+MOVE = move files and dirs
+MON = monitor src, run again if more than n changes is seen
+MOT = monitor src, run again in n minutes time if changed
+/XF name = exlude file matching name or path or regex
+/XD name = exclude dirs matching name or path
+XX exclude extra files n dirs
+IS include same files
+/MAX:n exclude files bigger than n
+/MIN:n exclude file size smaller than n
+/R:5 retry 5 move times on failed copies(Already set well)
+/W:5 wait 5 second before retrying failed attempts
+/REG = saves /R:n and /W:n values
+/TBD wait for sharename to be defined before retrying(retry erroes is 67)
+
+LOG Option
+/X report all extra files
+/V produce a verbose report
+/TS include src file time stamp
+/FP include full path
+/BYTES print size as bytes
+/ETA show ETA of copied files
+/QUIT
+
+
