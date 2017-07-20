@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8">
+<script type="text/javascript" src="Techie.js"></script>
+<script type="text/javascript" src= "carousel.js"></script>
+<link rel="stylesheet" type="text/css" href="carousel.css">
+	<title>Carousel Magna</title>
+</head>
+<body>
+<h2>Simple Carousel Demo</h2>
+<span class="carousel">1</span>
+<span class="carousel">2</span>
+<span class="carousel">3</span>
+<span class="carousel">4</span>
+<span class="carousel">5</span>
+<span class="carousel">6</span>
+<p>
+	<button onclick="slider.next(null, 1000);">play next</button>
+	<button onclick="slider.stop();">stop</button>
+<button onclick="slider.prev(null, 1000);">play prev</button>
+
+</p>
+<script type="text/javascript">
+	var slider = new Carousel(".carousel");
+</script>
+</body>
+</html>

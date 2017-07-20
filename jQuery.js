@@ -43,7 +43,6 @@
 // you try to trace through "use strict" call chains. (#13335)
 //"use strict";
 var deletedIds = [];
-
 var document = window.document;
 
 var slice = deletedIds.slice;
@@ -10674,8 +10673,6 @@ jQuery.expr.filters.animated = function( elem ) {
 
 
 
-
-
 /**
  * Gets a window from an element
  */
@@ -10984,7 +10981,7 @@ var
 
 	// Map over the $ in case of overwrite
 	_$ = window.$;
-
+	
 jQuery.noConflict = function( deep ) {
 	if ( window.$ === jQuery ) {
 		window.$ = _$;
@@ -10995,14 +10992,14 @@ jQuery.noConflict = function( deep ) {
 	}
 
 	return jQuery;
-};
-
+}; 
 // Expose jQuery and $ identifiers, even in
 // AMD (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
 // and CommonJS for browser emulators (#13566)
 if ( !noGlobal ) {
 	window.jQuery = window.$ = jQuery;
 }
+// Log($)
 
 return jQuery;
 }));

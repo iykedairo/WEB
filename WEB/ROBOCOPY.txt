@@ -1,5 +1,37 @@
                                    
 C:\WINDOWS\system32>ROBOCOPY /?
+ROBOCOPY C:\srcFolder C:\DestFolder //copies all things in src to dest
+
+robocopy %src%  %dest% *.* //normal
+robocopy %src%  %dest% *.* /S //Include all subdirectories;/E -- include but not empty ones
+robocopy %src%  %dest% *.* //
+robocopy %src%  %dest% *.* /j //use unbuffered I/O better for large files
+robocopy %src%  %dest% *.* /MOVE //copy and move files and folders from src to dest
+robocopy %src%  %dest% *.* /MOV//copy all things and then move files only from src to dest
+robocopy %src%  %dest% *.* /PURGE//After copying, delete files that no more exist in src	
+ROBOCOPY %src%  %dest% //same as above
+robocopy %src%  %dest% *.* /XF *.php* *.jpg*//exclude php and jpg files
+robocopy %src%  %dest% *.* /XD Dir1 Dir2 Dir3//exclude all the named dirs
+robocopy %src%  %dest% *.* /XO //Exclude older files
+robocopy %src%  %dest% *.* /XN //Exclude newer files
+robocopy %src%  %dest% *.* /XC //Exclude changed files
+robocopy %src%  %dest% *.* /MAX:2000 //Maximum file size is 2000bytes
+robocopy %src%  %dest% *.* /MIN:10000/Maximum file size is 10000byes
+robocopy %src%  %dest% *.* /Log+:C\Texts/Text.file//Log output to named file
+
+
+robocopy %src%  %dest% *.* %options% //uptimum
+
+
+
+
+
+
+
+
+
+
+
 
 -------------------------------------------------------------------------------
    ROBOCOPY     ::     Robust File Copy for Windows

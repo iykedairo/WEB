@@ -12,13 +12,13 @@ pt.ready = function(Techie, sapi, body, head, pt, w){
 
 
 while(true){
-    if(typeof Test === "undefined"){a("here")
+    if(typeof Test === "undefined"){//a("here")
  loadScript('modules/Test/Test.js', function(script){t.call(this, sapi);  });
-  a("also   "); break;
-    }else{a("Not yet")}
+ /* a("also   ");*/ break;
+    }else{/*a("Not yet")*/}
 }
 var see = setTimeout(function(){
-  a("Checks")
+ // a("Checks")
   
 }, 0)
 
@@ -41,7 +41,7 @@ function loadScript(url, callback){
     }
     script.src = url;
     document.body.appendChild(script);
-    a(script.parentNode)
+    //a(script.parentNode)
 
 }
 var dependencies = {

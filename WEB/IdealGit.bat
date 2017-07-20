@@ -1,0 +1,75 @@
+@ECHO OFF
+
+
+
+rem AUTOMATIC SHUTDOWN shutdown -f -
+ECHO TURN ON AUTOMATIC SHUT DOWN WHE PROGRAM TERMINATES?
+SET /P SHUTDOWNALERT=""
+IF "%SHUTDOWNALERT%" == "" (
+ECHO PROGRAM WILL THEN TERMINATES GRAEFULLY WITHOUT A SHUT DOWN.
+	)
+IF "%SHUTDOWNALERT%" == "Y" (
+	ECHO ARE YOU SURE YOU WANT TO SHUT DOWN YOUR SYSTEM WHEN PROGRAM TERMINATES [Y/N]?
+SET /P FINAL=""
+	)
+IF "%FINAL%" == "Y" (
+ECHO COMPUTER WILL THEN SHUT DOWN WHEN PROGRAM TERMINATES. YOU CAN GO SLEEP!
+	)ELSE (
+ECHO PROGRAM WILL THEN TERMINATES GRAEFULLY WITHOUT A SHUT DOWN.
+	)
+
+
+
+
+
+
+
+
+
+SET USERNAME=IYKEDAIRO
+SET PASS=IYKESMAN22
+SET EMAIL=OKEYSAJOGWUOKE@GMAIL.COM
+SET OFFSHORE=HTTPS://GITHUB.COM/IYKEDAIRO/SERVERS.GIT
+SET  COMMITMESSAGE="Techie Inc. Autos:- %Date%. "
+SET ADDTYPE="./Temps"
+SET COMMITTYPE="./Temps"
+ECHO TYPE IN YOUR COMMIT REMINDER [OPTIONAL]
+SET /P COMMITMESSAGE=": "
+SET /P ADDTYPE="INDICATE FOLDER OR FILE TO ADD EG ./NewFolder OR ./File.txt OR :/ ? "
+SET /P COMMITTYPE="INDICATE FOLDER OR FILE TO COMMIT EG ./NewFolder OR ./File.txt OR :/ ? "
+SET LOCALDIR=C:\WEB\WEBFILES\IYKEDAIRO\SERVERS
+ECHO DO YOU WANT TO USE DIFFERENT ACCOUNT? DEFAULT IS https://github.com/iykedairo/web.git [Y/N]?
+SET /P DIFF=" "
+IF "%DIFF%" == "Y" (
+ECHO INDICATE LOCAL REPO DO YOU WANT TO USE?
+SET /P LOCALDIR=": "
+ECHO INDICATE THE OFFSHORE REPO E.G https://github.com/iykedairo/web.git
+SET OFFSHORE=": "
+DIR /A
+PAUSE
+PAUSE
+
+	)ELSE (
+
+
+CD %LOCALDIR%
+git init
+git config user.name %username%
+git config user.password %pass%
+git config user.email %email%
+git remote add local %offshore%
+git remote set-url --add local %offshore%
+git pull Local master --allow-unrelated-histories
+git remote -v
+git add --all %addType% 
+git commit -m %COMMITMESSAGE% %commitType%
+git push Local master
+
+pause
+DIR /A
+PAUSE
+	
+	)
+
+
+

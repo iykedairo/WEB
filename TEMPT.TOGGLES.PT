@@ -114,7 +114,7 @@ populate(Techie, [/*...*/, all]);
 
 	
 
-
+var comSep = /\w+\,+./g, str = "commas; semi-colon; dots; single-quote; double-quote; exclamation; question mark";
 
 LoadScripts: function(scripts, pos){
 scripts = [];

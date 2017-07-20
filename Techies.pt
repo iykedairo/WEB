@@ -2,7 +2,10 @@
 ;(function(global, factor, factory){
  
 	if ( typeof module === "object" && typeof module.exports==="object" ){
-// For CommonJS and CommonJS-like environments where a proper window is present, execute the factory and get Techie.For environments that do not have a `window` with a `document`(such as Node.js), expose a factory as module.exports.This accentuates the need for the creation of a real `window`.e.g. var jQuery = require("jquery")(window);See ticket #14549 for more info.
+/* For CommonJS and CommonJS-like environments where a proper window is present, execute the factory and
+ get Techie.For environments that do not have a `window` with a `document`(such as Node.js), expose a factory 
+as module.exports.This accentuates the need for the creation of a real `window`.e.g. 
+var jQuery = require("jquery")(window);See ticket #14549 for more info.*/
 		module.exports = global.document ?
 			factory( global, true ) :function( w ) {
 
@@ -259,7 +262,7 @@ var timer;
 return function(fn){
 
 timer = setInterval(function(){ if(this.isReady){
-clearInterval(timer); fn.call(this,this, sapi, sapi.body, sapi.head, Techie,  window); 
+clearInterval(timer); fn.call(this,this, sapi, sapi.head.nextElementSibling, sapi.head, Techie,  window); 
 return this.status; 	
 } }.bind(this),0); };
 	}, function sttr(fn){
@@ -267,7 +270,7 @@ return this.status;
 
 		var timer;
 timer = setInterval(function(){ if(this.isReady){
-clearInterval(timer); fn.call(this,this, sapi, sapi.body, sapi.head, Techie,  window); 
+clearInterval(timer); fn.call(this,this, sapi, sapi.head.nextElementSibling, sapi.head, Techie,  window); 
 return this.status; 	
 	}
 }.bind(this),0);
@@ -339,9 +342,6 @@ return Object.prototype.toString.call(value) == "[object Number]";
 
 
 
-
-
-
 function Techie(selector, context){
 //Welcome To Techie JS API version: 1.00 All Rights Reserved.
 if(!(this instanceof Techie)){
@@ -373,8 +373,9 @@ if(isList(selector)){
 nodes = selector.length > 1 ? slice.call(selector) : [selector]; 
 selector = null;
 }
-if(typeof saved === 'string'){
-	if (saved[0] === '<' && saved[saved.length - 1] === ">") {
+if(typeof saved === 'string'){if(!saved){return this}
+
+	if (saved[0] == '<' && saved[saved.length - 1] == ">") {
 nodes = [createFrag(saved, context)]; 
 saved = null;
  } else {
@@ -398,7 +399,21 @@ DefineProperties(this,{
 }},
 
 
-
+Slice: Slice,slice: slice, isTag: isTag,plain: plain,isList: isList,isHTML: isHTML,isNode: isNode,forEach:forEach,
+isNodeList : isNodeList,isArrayLike: isArrayLike,DefineGlobals: DefineGlobals,Elements: Elements,
+html: html,HTML: html,events: Events,Events: Events,body : sapi.body,head : sapi.head,mixin : mixin,
+SAPI:SAPI,pt: Techie,URL: URL,url: url,Url : url,uri: uri,URI: URI,baseuri: baseuri,BaseUri: BaseUri,
+BaseURI: BaseURI,upper: upper,lower: lower,page : true,Store: {},store: [],array: [],create: create,
+createFrag: createFrag,isNode: isNode,isElement : isHTML,Extender: Extender,
+isCollection: isCollection,populate: populate,Bool: type,walk_the_DOM: walk,
+walk: walk,nthChild: nthChild,DefineProperty: DefineProperty,DefineProperties: DefineProperties,explode: explode,
+index: index,Index: Index,Children: Children,type: type,types: type,ChildPos:ChildPos,
+tag: tag,blob: blob,element: element,objects: objects,arrays: arrays,functions: functions,strings: strings,
+numbers: numbers, booleans: booleans,show: show, invalidChars: invalidChars,
+ extend: extend,
+ isAbsent: isAbsent,  isNumber: plain.numbers, isString: plain.strings, isUndefined:  type.undefineds,
+ isPrimitive: type.primitives, isArray: plain.arrays,  isObject: plain.objects, 
+  isFunction:  plain.functions, isBoolean: plain.booleans,   isPresent: isPresent,
 
 
 
@@ -737,24 +752,20 @@ fn(); clearTimeout(timer);
 fire(pt.hideErrors, 5000);
 },
 Log: function(text, bool, element){
+Techie.ready(function(techie,sapi,body,head,PT,w){
 if(bool != false){
 this.hideErrors();
-}
-var error = sapi.createElement("h3");
+}var error = sapi.createElement("h3");
 error.id = "err";
-element = element || sapi.body;
+element = element || body;
 if(arguments.length == 1){
-if(this instanceof HTMLElement){
-	element =	this;
-	}
-}
-error.innerHTML = text; 
-Elements.props.prependChild(element, error);
-Techie.styles({
-'box-sizing': 'border-box', 'word-wrap': 'break-word', 'color':'cyan', 'border':'1px solid crimson',
-'background-color':'#444', 'margin':'.1em auto',   'border':'1px #fff', 'text-align':'justify',
-'padding':'0.8em', 'border-radius':'2%' }, error);
-//Techie.styles("width:23em",sapi.body);
+if(this instanceof HTMLElement){ element =	this; }
+}error.innerHTML = text; 
+Elements.props.prependChild(element, error);	
+Techie.styles({'background-color':'#444', 'margin':'.1em auto',   'border':'1px #fff', 'text-align':'justify',
+'box-sizing': 'border-box', 'word-wrap': 'break-word', 'color':'cyan','padding':'0.8em', 'border-radius':'2%'
+ }, error);
+});
 },
 
 hideErrors: function(err){
@@ -1231,6 +1242,8 @@ mixin(o,this);
 
 
 
+
+DefineAccessors(Techie.prototype, "each", function(){return forEach}, forEach, true);
 function Index(item,A){
 	A = A || this;
 var all = arguments,
@@ -1714,7 +1727,13 @@ addClass: function(element, className){
 (e||this).clasasList.add(c);
 return this;
 	},
+getClass: function(context){
+return context.className;
+},
 removeClass: function(element, className){
+
+if(!arguments.length){this.classList.removeClass(this.className); return this;}
+if (!className) {}
 	if (isHTML(element || this) && typeof className === "string") {
 		(element || this).classList.remove(className); return this;
 	}throw new Error("Techie: A valid object HTMLElement and a className string required.");
@@ -2051,14 +2070,14 @@ if(typeof e !== "object" || !e.hasOwnProperty("length") || e.length < 0){
 return false;
 }
 
-function forEach(fn,o,d){
-var l, i = 0; o = o || this;
-if(isArrayLike(o)){
-l = o.length;for(;i<l;i++){
-if(fn.call(d||o[i],i,o[i],o) === false ) { break; } } } 
-else { for(i in o){ 
-if(ownProp(o, i)){
-if(fn.call(d||o[i],i,o[i],o) === false ) { break; }} } } return o; }
+function forEach(fn,object,thisArg){
+var length, index = 0; object = object || this;
+if(isArrayLike(object)){
+length = object.length;for(;index < length;index++){
+if(fn.call(thisArg || object[index],index,object[index],object) === false ) { break; } } } 
+else { for(index in object){ 
+if(object.hasOwnProperty(index)){
+if(fn.call(thisArg||object[index],index,object[index],o) === false ) { break; }} } } return object; }
 
 function HTML(contnt){var c;
 if(strings(contnt)){
@@ -2080,26 +2099,6 @@ node = node.nextSibling;
 
 
 
-mixin({
-Slice: Slice,slice: slice, isTag: isTag,plain: plain,isList: isList,isHTML: isHTML,isNode: isNode,
-isNodeList : isNodeList,isArrayLike: isArrayLike,DefineGlobals: DefineGlobals,Elements: Elements,
-html: html,HTML: html,events: Events,Events: Events,body : sapi.body,head : sapi.head,mixin : mixin,
-SAPI:SAPI,pt: Techie,URL: URL,url: url,Url : url,uri: uri,URI: URI,baseuri: baseuri,BaseUri: BaseUri,
-BaseURI: BaseURI,upper: upper,lower: lower,page : true,Store: {},store: [],array: [],create: create,
-createFrag: createFrag,isNode: isNode,isElement : isHTML,Extender: Extender,
-isCollection: isCollection,populate: populate,Bool: type,walk_the_DOM: walk,
-walk: walk,nthChild: nthChild,DefineProperty: DefineProperty,DefineProperties: DefineProperties,explode: explode,
-index: index,Index: Index,Children: Children,type: type,types: type,ChildPos:ChildPos,
-tag: tag,blob: blob,element: element,objects: objects,arrays: arrays,functions: functions,strings: strings,
-numbers: numbers, booleans: booleans,show: show, invalidChars: invalidChars,
- extend: extend,
- isAbsent: isAbsent,  isNumber: plain.numbers, isString: plain.strings, isUndefined:  type.undefineds,
- isPrimitive: type.primitives, isArray: plain.arrays,  isObject: plain.objects, 
-  isFunction:  plain.functions, isBoolean: plain.booleans,   isPresent: isPresent
-}, Techie);
-
-
-
 
 ////////////////////
 //The lifeblood
@@ -2116,19 +2115,14 @@ mixin(Techie.sapi.Techie, Techie.sapi );
 //sapi.each(fn,o,this)
 mixin(Techie.sapi,sapi);
 
-
 //Trick Ends
 //////////////////////
-window.Techie = Techie;
-window.sapi = sapi;
-window.SAPI = SAPI;
-window.pt = Techie;
-window.log=function(a,b,c){
+function Log(a,b,c){
 	return Techie.Log(a,b,c);
-};
-window.Log = log;
-
-
+}
+DefineProperties(window,{
+	Techie, Techie, sapi:sapi,SAPI:SAPI,pt:Techie,Log:Log,log:console.log,l:Log,L:Log
+},true);
 a("Techie Farewell!");
 
 a("The end of Techie");
