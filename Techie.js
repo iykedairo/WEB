@@ -1575,14 +1575,14 @@ DefineAccessors(Techie.prototype, "css", function gettr(){
             if (this.nodeType || this[0].nodeType) { return styles(this);}
              else {throw new Error("No arguments at Techie.css");}
       }
-        if (arguments.length == 3) {return styles(object, option, more).bind(this);}
+        if (arguments.length == 3) {return styles(object, style, option);}
 var this_bool = !!(this.nodeType || isCollection(this));
 var object_bool = !!(object.nodeType || isCollection(object));
-if (object_bool) {return styles(object, style).bind(this);}
+if (object_bool) {return styles(object, style);}
 if (this_bool) {
     if (typeof style === "string" && typeof object === "string") { return styles(this, object, style)}
         else if(style) {return console.log("Syntax error: Usage:--- pt(#div).css({}||[]||'cssTextblob')")}
-            return styles(this, object).bind(this);
+            return styles(this, object);
 }
    }; }, styles);
 
@@ -1995,8 +1995,9 @@ return this;
     }
 
     function createFrag(blob, context) {
-        var temp = (context || sapi).createElement("p");
+        var temp = sapi.createElement("p");
         temp.innerHTML = blob;
+        if (!temp.firstChild) { throw new Error("createFrag could not create the node from fragment. ");}
         forEach(function(index, context){
         if(typeof context === 'object' && context.nodeType){
             context.appendChild(temp.firstChild);

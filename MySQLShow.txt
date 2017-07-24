@@ -1,0 +1,75 @@
+mysql -u root -h localhost -D Books -p
+*********
+SELECT name, city, address
+from customers;
+
+SELECT city, address, name 
+from customers
+
+--Just give me all without spacifics
+select *
+from order_items;
+which gives the following
+
+
+Retrieving Data with Specific Criteria
+select *
+from orders
+where customerid = 3;
+
+
+books.orders.customerid = other_db.orders.customerid
+
+
+select *
+from orders
+where customerid = 3 or customerid = 4;
+
+	
+Retrieving Data From Multiple Table In A Database
+
+select orders.orderid, orders.amount, orders.date
+from customers, orders
+where customers.name = ‘Julie Smith’
+and customers.customerid = orders.customerid;
+
+
+SELECTING MORE THAN TWO TABLES
+select customers.name
+from customers, orders, order_items, books
+where customers.customerid = orders.customerid
+and orders.orderid = order_items.orderid
+and order_items.isbn = books.isbn
+and books.title like ‘%Java%’;
+
+
+
+Operator   	Name(If Applicable)       	 Example
+
+=         	Equality                    	 customerid = 3
+
+>         	Greater than                 	amount > 60.00
+
+<        	 Less than                   	amount < 60.00
+
+>=        	Greater than or eqaul       	amount >= 60.00
+
+<=         	Less than or equal         	amount <= 60.00
+		
+!= or <>    	Not equal                	quantity != 0
+
+IS NOT NULL   	nagatation               	address is not null
+
+IS NULL   	n/a                            address is null
+
+BETWEEN  	 n/a                            amount between 0 and 60.00
+
+IN       	 n/a                            city in (“Carlton”,“Moe”)
+
+NOT IN    	 n/a                            city not in(“Carlton”,  ”Moe”) 
+
+LIKE      	Pattern match          		name like (“Fred %”)
+
+NOT LIKE        Pattern match            	name not like (“Fred %”) 
+
+REGEXP    Regular expression   			name regexp

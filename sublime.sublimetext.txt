@@ -1,0 +1,9 @@
+BracketHighlighter: http://bit.ly/1wzLvEy
+LiveReload: http://bit.ly/16DaLjp
+SideBarEnhancements: http://bit.ly/1Aqpvgi
+Color Highlighter: http://bit.ly/1ArdbMU
+Caniuse: http://bit.ly/1DW59Qc
+ColorPicker: http://bit.ly/16DLoy5
+Emmet: http://bit.ly/1JAFVaf
+Autoprefixer: http://bit.ly/1ArhBTX
+LiveStyle: http://bit.ly/1CkPdSO

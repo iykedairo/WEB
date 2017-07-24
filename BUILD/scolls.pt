@@ -1,0 +1,70 @@
+var x = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+
+var y = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+
+
+function getScrollTop(){
+    if(typeof pageYOffset!= 'undefined'){  //most browsers except IE before #9
+ return pageYOffset;
+    } else{  var B= document.body; //IE 'quirks'
+ var D= document.documentElement; //IE with doctype
+ D= (D.clientHeight)? D: B;
+ return D.scrollTop;
+    }
+
+}
+
+function scrollTop(object, length){
+var w = window, body = sapi.body, 
+y_offset = w.pageYOffset ? w.pageYOffset : (sapi.documentElement || body).clientHeight;
+y_offset = length || y_offset;
+return y_offset;
+}
+
+
+
+
+alert(getScrollTop());
+
+
+
+function getSize(method) { 
+    return document.documentElement[method] || document.body[method]; 
+} 
+getSize("scrollTop");
+
+
+function getDocumentScrollTop(doc) { 
+doc = doc || document; //doc.body.scrollTop is IE quirkmode only
+ return Math.max(doc.documentElement.scrollTop, doc.body.scrollTop); 
+}
+
+
+ /*function I created that allows developers to find the root element that actually hosts has a working "scrollTop"
+ property. Tested on Chrome 42 and Firefox 37 for Mac OS X (10.9.5):
+*/
+function getScrollRoot(){ 
+var html = document.documentElement, body = document.body, 
+cacheTop = ((typeof window.pageYOffset !== "undefined") ? window.pageYOffset : null) || body.scrollTop || html.scrollTop, // cache the window's current scroll position root; 
+html.scrollTop = body.scrollTop = cacheTop + (cacheTop > 0) ? -1 : 1;
+ // find root by checking which scrollTop has a value larger than the cache. 
+ root = (html.scrollTop !== cacheTop) ? html : body; root.scrollTop = cacheTop; 
+ // restore the window's scroll position to cached value 
+ return root; // return the scrolling root element
+  } // USAGE: when page is ready: create a global variable that calls this function. 
+  var scrollRoot = getScrollRoot();
+   scrollRoot.scrollTop = 10; // set the scroll position to 10 pixels from the top 
+   scrollRoot.scrollTop = 0; // set the scroll position to the top of the window
+
+
+
+function scrollViewport(top, left) { 
+var eViewport = document.scrollingElement;
+if (eViewport) { 
+if (typeof top !== "undefined") { eViewport.scrollTop = top; } 
+if (typeof left !== "undefined") { eViewport.scrollLeft = left; } } else { 
+// Do your current checks or set the scrollLeft and scrollTop // properties of both of documentElement and body, or user agent // sniffing, if you must.
+ } }
+
+
+
