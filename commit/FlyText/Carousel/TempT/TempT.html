@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>W3.CSS</title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="../../Techie.js"></script>
+<script type="text/javascript" src="../CarouselOrigin.js"></script>
+</head>
+<body>
+
+<h2 class="w3-center">Automatic Slideshow</h2>
+
+<div class="w3-content w3-section" style="max-width:500px" id="shows">
+  <img class="carousel mySlides" src="img_la.jpg" style="width:100%">
+  <img class="carousel mySlides" src="img_ny.jpg" style="width:100%">
+  <img class="carousel mySlides" src="img_chicago.jpg" style="width:100%">
+</div>
+
+<script>
+Techie(foo);
+function foo ( ref, doc, body, head, $, w ) { 
+var slider = new Carousel("shows");
+
+slider.ride();
+/*
+function carousel() {
+  var container = $(".mySlides");
+ ;[].forEach.call(container, function(picture){picture.style.display = "none";});counter++;
+    if (typeof counter === "number" && (counter % 1) == 0 && counter > container.length) {
+      counter = 1;  
+    }  
+    container[counter - 1].style.display = "block";  
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+}*/
+}
+
+
+</script>
+
+</body>
+</html>

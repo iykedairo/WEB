@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Temporary Carousel Test</title>
+	<script type="text/javascript" src="Techie.js"></script>
+	<script type="text/javascript" src="CarouselOrigin.js"></script>
+</head>
+<body>
+<div id="img"><img src="img/7.jpg" class="carousel" width="20%"></div>
+<div id="img"><img src="img/8.jpg" class="carousel" width="20%"></div>
+<div id="img"><img src="img/9.jpg" class="carousel" width="20%"></div>
+<script type="text/javascript">
+pt(document).ready = function (  ) {
+
+	
+var slider = new Carousel ( ".carousel" ), image = pt("img")[0];
+	slider.next(null,  38);
+	// slider.pass(image, 10, 5)
+	// waver(pt("img")[0]);
+};
+</script>
+</body>
+</html>

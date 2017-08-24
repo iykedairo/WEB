@@ -1,0 +1,14 @@
+INSERTING INTO TABLES
+--customer is a table under the dabase Books
+INSERT INTO customers values
+(NULL, "Chukwuma Iyke", "288 Akin Olubgade", "VI");
+
+--selective inserts
+INSERT INTO customers (name, city) values
+(‘Melissa Jones’, ‘Nar Nar Goon North’);
+
+-- I preffer this one below, choice though
+insert into customers
+set name = ’Michael Archer’,
+address = ’12 Adderley Avenue’,
+city = ’Leeton’;

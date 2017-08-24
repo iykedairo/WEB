@@ -1,0 +1,5 @@
+<input type="file" />​
+
+<input type="file" id="someID" />
+
+window.open("file:///" + yourLocalOrNetworkPath);

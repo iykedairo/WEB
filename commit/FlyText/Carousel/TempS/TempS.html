@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="../../../Hosted/Techie.js"></script>
+<script type="text/javascript" src="../../../Hosted/Lib/Animation.js"></script>
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<style>
+.mySlides {display:none;}
+</style>
+<body>
+
+<h2 class="w3-center">HTML slides</h2>
+
+<div class="w3-content" style="max-width:400px">
+  <!-- <img class="mySlides" src="img_monterosso.jpg" style="width:100%"> -->
+
+  <!-- <img class="mySlides" src="img_manarola.jpg" style="width:100%"> -->
+  <img class="mySlides" src=" 0.jpg" style="width: 100%;">
+  <img class="mySlides" src=" 1.jpg" style="width: 100%;">
+  <img class="mySlides" src=" 2.jpg" style="width: 100%;">
+  <img class="mySlides" src=" 3.jpg" style="width: 100%;">
+  <img class="mySlides" src=" 4.jpg" style="width: 100%;">
+</div>
+
+<script> 
+Techie(function(body, head, doc, $, _, w) {
+ var s = SlideShow(".mySlides");
+ s.slide();  //s.Stop(); 
+ pt(sapi).on("click", function ( e ) {
+    s.stop()
+ })
+});
+
+</script>
+
+</body>
+</html>

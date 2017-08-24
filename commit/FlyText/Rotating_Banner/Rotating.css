@@ -1,0 +1,15 @@
+section {
+	margin: 75vh 0;
+}
+
+.sun { 
+	position: relative;
+	top: 30vh;
+	left: 70vh;
+	display: block;
+	width: 200px;
+	/*margin: 0 auto;*/
+}
+.sun img {
+	position: fixed;
+}

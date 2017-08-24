@@ -1,0 +1,4 @@
+CORE DOM LEVEL 1
+PARENT
+childNodes, replaceChild, removeChild, firstChild, lastChild, nextSibling, previousSibling;
+CHILD

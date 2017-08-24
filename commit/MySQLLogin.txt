@@ -1,0 +1,15 @@
+\q, \quit, \exit, \connect, \c, -c, -n
+LOGIN 
+mysql -h localhost -u michaeliyke -p
+mysql -h website.com -u Techie -p
+mysql -u michaeliyke -p
+>*****
+SPECIFY WHICH DB TO USE
+>use Books_O_Rama
+
+ALTERNATIVELY, SELECT YOUR DB AS YOU LOGIN
+mysql -D Book -h localhost -u Techie -p
+
+show tables, show databases, describe Books_O_Rama
+mysql -D Books -h localhost -u root -p < C:\WEB\Books.sql
+CREATE TABLES

@@ -1,0 +1,27 @@
+mysql -u root -p //login
+mysql>create database Book_O_Rama //Query OK, 1 row affected (0.0 sec)
+
+User Setup: The GRANT Command
+The GRANT and REVOKE commands enable you to give rights to and take them away from
+MySQL users at these four levels of privilege:
+ Global
+ Database
+ Table
+ Column
+
+GRANT privileges [columns]
+ON item
+TO user_name [IDENTIFIED BY ‘password’]
+[REQUIRE ssl_options]
+[WITH [GRANT OPTION | limit_options] ]
+
+columns -- optional list of columns where grant applies if you so wish
+item -- the database_name or database_table name the grant is applied
+*.* as item means all items i.e global
+* also has the same bearing.
+
+db_name.* - all tables within db_name
+db_name.table_name for just a specific table
+
+mysqlshow -u root -p//show but require password first. 
+mysqlshow mysql -u -root -p//all tables in the database specified
